@@ -1,13 +1,10 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class DBHandler {
     Connection con;
 
-    public DBHandler(){
-        try{
+    public DBHandler() {
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/scavengerHuntNEA", "root", "root");
             System.out.println("Connected!");
@@ -17,16 +14,29 @@ public class DBHandler {
         }
     }
 
-    public void testSQL(){
-        String sql = "SELECT COUNT(gender) FROM user_info WHERE gender = 1";
-        try (PreparedStatement stmt = con.prepareStatement(sql)){
+    public Location createLocationfromID(int locationID) {
+        String sql = "SELECT * FROM locations JOIN qna ON locations.question_id = qna.question_id WHERE location_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, locationID);
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            int gender = rs.getInt("COUNT(gender)");
-            System.out.println(gender);
-        } catch(Exception e){
-            System.out.println("Error in DBHandler > testSQL");
+            String name = rs.getString("name");
+            int xcoord = rs.getInt("xcoord");
+            int ycoord = rs.getInt("ycoord");
+            String descp = rs.getString("descp");
+            String schoolLink = rs.getString("school_link");
+            String question = rs.getString("question");
+            int correctAns = rs.getInt("correct_ans");
+            String option1 = rs.getString("option_1");
+            String option2 = rs.getString("option_2");
+            String option3 = rs.getString("option_3");
+
+            Location location = new Location(locationID, name, xcoord, ycoord, descp, schoolLink, question, correctAns, option1, option2, option3);
+            return location;
+        } catch (SQLException e) {
+            System.out.println("Error in DBHandler > createLocationfromID");
             e.printStackTrace();
+            return null;
         }
     }
 }
