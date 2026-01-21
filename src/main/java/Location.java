@@ -1,6 +1,3 @@
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 public class Location {
     private int locationID;
     private String name;
@@ -82,7 +79,10 @@ public class Location {
                 '}';
     }
 
-
-
-
+    public String getOption(){
+        String correctField = "option_" + correctOption;
+        DBHandler db = new DBHandler();
+        String correctAnswer = db.getCorrectAnswer(correctField, locationID);
+        return correctAnswer;
+    }
 }

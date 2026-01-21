@@ -39,4 +39,19 @@ public class DBHandler {
             return null;
         }
     }
+
+    public String getCorrectAnswer(String correctField, int locationID) {
+        String sql = "SELECT * FROM qna WHERE question_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, locationID);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            String correctAnswer = rs.getString(correctField);
+            return correctAnswer;
+        } catch (SQLException e) {
+            System.out.println("Error in DBHandler > getCorrectAnswer");
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
