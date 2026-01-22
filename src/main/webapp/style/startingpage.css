@@ -1,0 +1,48 @@
+body {
+    background-image: url("../img/bg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    place-items: center;
+}
+
+.startinglogo{
+    height: 200px;
+    width: auto;
+    margin: 40px;
+}
+
+h1, p{
+    color: white;
+    font-family: Verdana;
+}
+
+p{
+    font-size: 25px;
+}
+
+button{
+    font-size: 30px;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    height: 100px;
+    width: 300px;
+    padding: 14px 40px;
+    margin: 10px;
+}
+
+.adminbutton{
+    background-color: #44290C;
+}
+.adminbutton:hover{
+    background-color: #9D7967;
+}
+.userbutton{
+    background-color: #CF5882;
+}
+
+.userbutton:hover{
+    background-color: #D3A1AB;
+}

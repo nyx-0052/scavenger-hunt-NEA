@@ -2,11 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JSP - Hello World</title>
+  <title>Fettes Scavenger Hunt</title>
+  <link rel="stylesheet" type="text/css" href="style/startingpage.css">
 </head>
+
 <body>
-<h1><%= "Hello World!" %></h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<img class="startinglogo" src="img/fettes_logo.png">
+<h1>Welcome to the Fettes College Scavenger Hunt!</h1>
+<br>
+<p>Who are you?</p>
+<p>I am a...</p>
+<button onclick="" class="adminbutton">Admin</button>
+<button onclick="" class="userbutton">User</button>
 </body>
+
 </html>
