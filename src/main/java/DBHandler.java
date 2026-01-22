@@ -46,10 +46,23 @@ public class DBHandler {
             stmt.setInt(1, locationID);
             ResultSet rs = stmt.executeQuery();
             rs.next();
-            String correctAnswer = rs.getString(correctField);
-            return correctAnswer;
+            return rs.getString(correctField);
         } catch (SQLException e) {
             System.out.println("Error in DBHandler > getCorrectAnswer");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getRoutePath(int routeID){
+        String sql = "SELECT * FROM preset_routes WHERE route_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, routeID);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("route_path");
+        } catch (SQLException e) {
+            System.out.println("Error in DBHandler > getRoutePath");
             e.printStackTrace();
             return null;
         }

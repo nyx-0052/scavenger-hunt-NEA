@@ -26,7 +26,7 @@ public class Location {
         this.correctOption = correctOption;
     }
 
-    // setters
+    // getters
     public int getLocationID() {
         return locationID;
     }
