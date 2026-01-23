@@ -12,8 +12,18 @@
 <br>
 <p>Who are you?</p>
 <p>I am a...</p>
-<button onclick="" class="adminbutton">Admin</button>
-<button onclick="" class="userbutton">User</button>
+<button onclick="launchAdminAuthentication()" class="adminbutton">Admin</button>
+<button onclick="launchUserDataConsent()" class="userbutton">User</button>
 </body>
+
+<script>
+  function launchAdminAuthentication(){
+    window.location = "adminAuthentication.jsp";
+  }
+
+  function launchUserDataConsent(){
+    window.location = "userDataConsent.jsp"
+  }
+</script>
 
 </html>
