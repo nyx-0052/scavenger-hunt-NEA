@@ -1,0 +1,23 @@
+body{
+    padding: 15px;
+    background-color: #D3A1AB;
+    font-family: Verdana;
+    color: white;
+    font-size: 20px;
+}
+
+li{
+    margin: 10px;
+}
+button{
+    font-size: 20px;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 14px;
+    background-color: #CF5882;
+}
+
+button:hover{
+    background-color: #9D7967;
+}

@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<img class="startinglogo" src="img/fettes_logo.png">
+<img class="startinglogo" src="img/fettes_logo.png" alt="Logo of Fettes College">
 <h1>Welcome to the Fettes College Scavenger Hunt!</h1>
 <br>
 <p>Who are you?</p>
@@ -18,11 +18,11 @@
 
 <script>
   function launchAdminAuthentication(){
-    window.location = "adminAuthentication.jsp";
+    window.location = "adminInterface/adminAuthentication.jsp";
   }
 
   function launchUserDataConsent(){
-    window.location = "userDataConsent.jsp"
+    window.location = "userInterface/userDataConsent.jsp"
   }
 </script>
 
