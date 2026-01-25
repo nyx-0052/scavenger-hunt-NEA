@@ -10,9 +10,8 @@
 <html>
 <head>
     <title>Fettes Scavenger Hunt - Authentication</title>
-    <p>This is the authentication page for admins.</p>
 </head>
 <body>
-
+<p>This is the authentication page for admins.</p>
 </body>
 </html>
