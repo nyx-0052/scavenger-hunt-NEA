@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Fettes Scavenger Hunt - Data Consent </title>
-    <link rel="stylesheet" type="text/css" href="../style/userDataConsent.css">
+    <link rel="stylesheet" type="text/css" href="../style/userInterface/userDataConsent.css">
 </head>
 
 <body>

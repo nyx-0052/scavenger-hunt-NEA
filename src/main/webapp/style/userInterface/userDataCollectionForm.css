@@ -1,0 +1,43 @@
+body{
+    padding: 15px;
+    background-color: #D3A1AB;
+    font-family: Verdana;
+    color: white;
+    font-size: 20px;
+}
+
+fieldset{
+    background-color: #F0F0EA;
+    color: #CF5882;
+    border-radius: 8px;
+    margin: 20px;
+}
+
+legend{
+    background-color: #CF5882;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+
+input[type="radio"]{
+    accent-color: #CF5882;
+    height: 15px;
+    width: 15px;
+    margin: 2px;
+}
+
+input[type="submit"]{
+    font-size: 20px;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 14px;
+    background-color: #CF5882;
+    margin: 20px;
+}
+
+input[type="submit"]:hover{
+    background-color: #9D7967;
+}

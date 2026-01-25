@@ -9,8 +9,11 @@
 <html>
 <head>
     <title>Fettes Scavenger Hunt - Data Collection Form</title>
+    <link rel="stylesheet" type="text/css" href="../style/userInterface/userDataCollectionForm.css">
 </head>
 <body>
+<h2>Thank you again for your help.</h2>
+<p>Please select one option for each question.</p>
 <form onsubmit = "return validation()">
     <fieldset>
         <legend>Age:</legend>
@@ -54,7 +57,7 @@
         <label for="transition">Transition/Scholarship</label>
         <br>
         <input type="radio" id="otherreasonforvisit" name="reasonforvisit" value="5">
-        <label for="otherreasonforvisit">Others</label>
+        <label for="otherreasonforvisit">Other:</label>
         <input type="text" id="otherreasonforvisittext">
         <br>
     </fieldset>
@@ -71,7 +74,7 @@
         <label for=“international”>International</label>
         <br>
         <input type="radio" id="othercurrentschool" name="currentschool" value="4">
-        <label for="othercurrentschool">Others</label>
+        <label for="othercurrentschool">Other:</label>
         <input type="text" id="othercurrentschootext">
     </fieldset>
 
@@ -85,13 +88,13 @@
         if (document.querySelector('input[name="reasonforvisit"]:checked').value== 5){
             textbox = document.getElementById("otherreasonforvisittext");
             if(textbox.value === ""){
-                window.alert("Please fill in the textbox.")
+                window.alert("Please fill in your other reason for visit.")
                 return false;
             }
         } else if (document.querySelector('input[name="currentschool"]:checked').value == 4){
             textbox = document.getElementById("othercurrentschooltext");
             if(textbox.value === ""){
-                window.alert("Please fill in the textbox.")
+                window.alert("Please fill in your other current school.")
                 return false;
             }
         } else {
