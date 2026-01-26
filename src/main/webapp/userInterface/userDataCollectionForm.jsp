@@ -9,12 +9,12 @@
 <html>
 <head>
     <title>Fettes Scavenger Hunt - Data Collection Form</title>
-    <link rel="stylesheet" type="text/css" href="../style/userInterface/userDataCollectionForm.css">
+    <link rel="stylesheet" type="text/css" href="./../style/userInterface/userDataCollectionForm.css">
 </head>
 <body>
 <h2>Thank you again for your help.</h2>
 <p>Please select one option for each question.</p>
-<form onsubmit = "return validation()">
+<form onsubmit = "return validation()" action="${pageContext.request.contextPath}/UserDataServlet" method="post">
     <fieldset>
         <legend>Age:</legend>
         <input type="radio" id="below11" name="age" value="1" required>
@@ -58,7 +58,7 @@
         <br>
         <input type="radio" id="otherreasonforvisit" name="reasonforvisit" value="5">
         <label for="otherreasonforvisit">Other:</label>
-        <input type="text" id="otherreasonforvisittext">
+        <input type="text" name="otherreasonforvisittext">
         <br>
     </fieldset>
 
@@ -75,7 +75,7 @@
         <br>
         <input type="radio" id="othercurrentschool" name="currentschool" value="4">
         <label for="othercurrentschool">Other:</label>
-        <input type="text" id="othercurrentschootext">
+        <input type="text" name="othercurrentschootext">
     </fieldset>
 
     <input type="submit">

@@ -1,3 +1,5 @@
+package objects;
+
 public class Location {
     private int locationID;
     private String name;
@@ -64,7 +66,7 @@ public class Location {
     // toString
     @Override
     public String toString() {
-        return "Location{" +
+        return "objects.Location{" +
                 "locationID=" + locationID +
                 ", name='" + name + '\'' +
                 ", xcoord=" + xcoord +

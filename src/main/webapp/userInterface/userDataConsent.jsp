@@ -16,7 +16,7 @@
 <body>
 <h2>Thank you for visiting Fettes College today.</h2>
 <h2>Just a wee request before we start...</h2><br>
-<p>In order to improve our future school events, we are hoping to collect data from our users.</p>
+<p>In order to improve future school events at Fettes, we are hoping to collect data from our users.</p>
 <p><strong>All data is collected anonymously.</strong></p>
 <ul>
     <li><b>What type of data is collected:</b> your age, gender, reason for visiting Fettes and current school.</li>
