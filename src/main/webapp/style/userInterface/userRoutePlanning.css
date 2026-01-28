@@ -1,0 +1,39 @@
+body {
+    background-color: #D3A1AB;
+    display: grid;
+    place-items: center;
+}
+
+h1, p{
+    color: white;
+    font-family: Verdana;
+}
+
+p{
+    font-size: 25px;
+}
+
+button{
+    font-size: 30px;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    height: 100px;
+    width: 300px;
+    padding: 14px 40px;
+    margin: 10px;
+}
+
+.presetbutton{
+    background-color: #44290C;
+}
+.presetbutton:hover{
+    background-color: #9D7967;
+}
+.custombutton{
+    background-color: #CF5882;
+}
+
+.custombutton:hover {
+    background-color: #D3A1AB;
+}

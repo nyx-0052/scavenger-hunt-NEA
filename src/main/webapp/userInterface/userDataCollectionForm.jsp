@@ -58,7 +58,7 @@
         <br>
         <input type="radio" id="otherreasonforvisit" name="reasonforvisit" value="5">
         <label for="otherreasonforvisit">Other:</label>
-        <input type="text" name="otherreasonforvisittext">
+        <input type="text" name="otherreasonforvisittext" id="otherreasonforvisittext">
         <br>
     </fieldset>
 
@@ -75,7 +75,7 @@
         <br>
         <input type="radio" id="othercurrentschool" name="currentschool" value="4">
         <label for="othercurrentschool">Other:</label>
-        <input type="text" name="othercurrentschootext">
+        <input type="text" name="othercurrentschootext" id="othercurrentschootext">
     </fieldset>
 
     <input type="submit">

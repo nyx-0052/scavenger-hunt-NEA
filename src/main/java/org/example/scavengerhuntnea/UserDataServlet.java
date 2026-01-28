@@ -9,8 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import objects.DBHandler;
 
-import static java.awt.SystemColor.window;
-
 @WebServlet("/UserDataServlet")
 public class UserDataServlet extends HttpServlet {
     @Override
