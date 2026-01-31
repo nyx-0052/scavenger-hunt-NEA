@@ -13,13 +13,13 @@ p{
     font-size: 25px;
 }
 
-button{
+button, input{
     font-size: 30px;
     color: white;
     border-radius: 8px;
     border: none;
     height: 100px;
-    width: 300px;
+    width: 500px;
     padding: 14px 40px;
     margin: 10px;
 }

@@ -9,20 +9,19 @@
 <html>
 <head>
     <title>Fettes Scavenger Hunt - Route Planning </title>
-    <link rel="stylesheet" type="text/css" href="../style/userInterface/userRoutePlanning.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/userInterface/userRoutePlanning.css">
 </head>
 <body>
 <h1>What do you want to do today?</h1>
 <p>Choose your path:</p>
-<button onclick="launchRoutePresets()" class="presetbutton">Choose from presets..</button>
+<form action="${pageContext.request.contextPath}/UserRoutePresetsServlet" method="get">
+    <input type="submit" value="Choose from presets.." class="presetbutton">
+</form>
+
 <button onclick="launchRouteCustomisation()" class="custombutton">Customise a route...</button>
 </body>
 
 <script>
-    function launchRoutePresets(){
-        window.location = "userRoutePreset.jsp";
-    }
-
     function launchRouteCustomisation(){
         window.location = "userChooseYourLocation.jsp"
     }

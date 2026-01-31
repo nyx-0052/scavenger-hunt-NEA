@@ -1,0 +1,39 @@
+body{
+    background-color: #D3A1AB;
+    color: white;
+    font-family: Verdana;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+}
+
+h2{
+    position: relative;
+    margin: auto;
+    left: -30px;
+}
+
+.listofroutes{
+    overflow: scroll;
+}
+
+button{
+    display: block;
+    font-size: 20px;
+    background-color: #F0F0EA ;
+    color: #CF5882;
+    border-radius: 8px;
+    border: none;
+    height: 50px;
+    width: 100%;
+    padding: 14px 40px;
+    margin: 10px;
+    font-family: Verdana;
+}
+
+img{
+    height: 60px;
+    width: auto;
+}

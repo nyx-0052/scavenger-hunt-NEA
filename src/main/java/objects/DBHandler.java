@@ -126,4 +126,31 @@ public class DBHandler {
             }
         }
     }
+
+    public int sizeOfRoutePresets(){
+        String sql = "SELECT COUNT(route_id) FROM preset_routes";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("COUNT(route_id)");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > sizeOfRoutePresets");
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public String getRoutePresetName(int route_id){
+        String sql = "SELECT name FROM preset_routes WHERE route_id =?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, route_id);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("name");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > getRoutePresetName");
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
