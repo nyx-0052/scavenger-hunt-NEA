@@ -1,14 +1,15 @@
 package org.example.scavengerhuntnea;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import objects.DBHandler;
-import objects.LocationRoute;
+import objects.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet("/UserRoutePreviewServlet")
 public class UserRoutePreviewServlet extends HttpServlet {
@@ -17,7 +18,16 @@ public class UserRoutePreviewServlet extends HttpServlet {
         String presetname = req.getParameter("preset");
 
         DBHandler db = new DBHandler();
-        String routepath = db.getRoutePath(presetname);
-        LocationRoute chosenroute = new LocationRoute(routepath);
+        LocationRoute chosenpreset = new LocationRoute(db.getRoutePath(presetname));
+        ArrayList<Location> route = chosenpreset.getRoute();
+        ArrayList<String> locationNames = new ArrayList<>();
+        for (int i=0; i<route.size(); i++){
+            Location currentLocation = route.get(i);
+            locationNames.add(currentLocation.getName());
+        }
+        req.setAttribute("listOfLocationNames", locationNames);
+        RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userRoutePreview.jsp");
+        rd.forward(req, res);
+
     }
 }
