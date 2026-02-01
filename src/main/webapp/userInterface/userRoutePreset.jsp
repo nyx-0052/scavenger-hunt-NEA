@@ -22,15 +22,9 @@
 </div>
 
 <div class="listofroutes">
-    <c:forEach var="item" items="${listOfPresetNames}">
-        <button onclick="openPreset()">${item}</button>
-    </c:forEach>
+        <c:forEach var="item" items="${listOfPresetNames}">
+            <div><a href="UserRoutePreviewServlet?preset=${item}">${item}</a></div>
+        </c:forEach>
 </div>
 </body>
-
-<script>
-    function openPreset(){
-        alert("This item is clicked.")
-    }
-</script>
 </html>

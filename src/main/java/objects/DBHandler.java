@@ -16,6 +16,11 @@ public class DBHandler {
         }
     }
 
+    /**
+     * Generates a location object from locationID
+     * @param locationID
+     * @return location object (including question and answers)
+     */
     public Location createLocationfromID(int locationID) {
         String sql = "SELECT * FROM locations JOIN qna ON locations.question_id = qna.question_id WHERE location_id = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -42,6 +47,11 @@ public class DBHandler {
         }
     }
 
+    /**
+     * @param correctField
+     * @param locationID
+     * @return correct answer as a String
+     */
     public String getCorrectAnswer(String correctField, int locationID) {
         String sql = "SELECT * FROM qna WHERE question_id = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -56,6 +66,11 @@ public class DBHandler {
         }
     }
 
+    // PRESET_ROUTES TABLE
+    /**
+     * @param routeID
+     * @return routePath as String
+     */
     public String getRoutePath(int routeID){
         String sql = "SELECT * FROM preset_routes WHERE route_id = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -70,6 +85,68 @@ public class DBHandler {
         }
     }
 
+    /**
+     * @param routeName
+     * @return routePath as String
+     */
+    public String getRoutePath(String routeName){
+        String sql = "SELECT * FROM preset_routes WHERE name =?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, routeName);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("route_path");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > getRoutePresetName");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * @param routeID
+     * @return routeName as String
+     */
+    public String getRoutePresetName(int routeID){
+        String sql = "SELECT name FROM preset_routes WHERE route_id =?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, routeID);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("name");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > getRoutePresetName");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * @return length of (how many records there are) in the preset_routes table
+     */
+    public int sizeOfRoutePresets(){
+        String sql = "SELECT COUNT(route_id) FROM preset_routes";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("COUNT(route_id)");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > sizeOfRoutePresets");
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    // USER_INFO TABLE
+    /**
+     * Inserts data into user_info table
+     * @param age
+     * @param gender
+     * @param currentschool
+     * @param currentschoolOther
+     * @param reasonforvisit
+     * @param reasonforvisitOther
+     */
     public void addUserInfo(int age, int gender, int currentschool, String currentschoolOther, int reasonforvisit, String reasonforvisitOther){
         String sql;
         if (currentschoolOther.isEmpty() && reasonforvisitOther.isEmpty()){
@@ -124,33 +201,6 @@ public class DBHandler {
                 System.out.println("Error in objects.DBHandler > addUserInfo");
                 e.printStackTrace();
             }
-        }
-    }
-
-    public int sizeOfRoutePresets(){
-        String sql = "SELECT COUNT(route_id) FROM preset_routes";
-        try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-            return rs.getInt("COUNT(route_id)");
-        } catch (SQLException e) {
-            System.out.println("Error in objects.DBHandler > sizeOfRoutePresets");
-            e.printStackTrace();
-            return -1;
-        }
-    }
-
-    public String getRoutePresetName(int route_id){
-        String sql = "SELECT name FROM preset_routes WHERE route_id =?";
-        try (PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setInt(1, route_id);
-            ResultSet rs = stmt.executeQuery();
-            rs.next();
-            return rs.getString("name");
-        } catch (SQLException e) {
-            System.out.println("Error in objects.DBHandler > getRoutePresetName");
-            e.printStackTrace();
-            return null;
         }
     }
 }
