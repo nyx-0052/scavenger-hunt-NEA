@@ -18,7 +18,6 @@ public class UserRoutePresetsServlet extends HttpServlet {
         ArrayList <String> listOfPresetNames = new ArrayList<>();
         DBHandler db = new DBHandler();
         int numberOfRoutes = db.sizeOfRoutePresets();
-        res.getWriter();
         for (int i=1; i < numberOfRoutes+1; i++){
             String routeName = db.getRoutePresetName(i);
             listOfPresetNames.add(routeName);

@@ -15,30 +15,44 @@ h2{
     left: -30px;
 }
 
-.listofroutes{
+.listoflocations{
     overflow: scroll;
-}
-
-.listofroutes > div{
-    display: block;
-    background-color: #F0F0EA ;
+    background-color: #F0F0EA;
     border-radius: 8px;
     border: none;
-    height: 50px;
+    height: 100%;
     width: 100%;
     padding: 14px 40px;
     margin: 10px;
     font-family: Verdana;
-    text-align: center;
 }
 
-a{
+li{
+    margin: 10px;
     text-decoration: none;
     color: #CF5882;
     font-size: 20px;
 }
 
-img{
+.submit{
+    border-radius: 8px;
+    border: none;
+    padding: 14px;
+    background-color: #CF5882;
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+
+}
+
+img {
     height: 60px;
     width: auto;
 }

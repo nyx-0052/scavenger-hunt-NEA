@@ -19,15 +19,15 @@ public class UserRoutePreviewServlet extends HttpServlet {
 
         DBHandler db = new DBHandler();
         LocationRoute chosenpreset = new LocationRoute(db.getRoutePath(presetname));
-        ArrayList<Location> route = chosenpreset.getRoute();
+        ArrayList<Location> routeofLocations = chosenpreset.getRoute();
         ArrayList<String> locationNames = new ArrayList<>();
-        for (int i=0; i<route.size(); i++){
-            Location currentLocation = route.get(i);
+        for (int i = 0; i< routeofLocations.size(); i++){
+            Location currentLocation = routeofLocations.get(i);
             locationNames.add(currentLocation.getName());
         }
+        req.setAttribute("presetName", presetname);
         req.setAttribute("listOfLocationNames", locationNames);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userRoutePreview.jsp");
         rd.forward(req, res);
-
     }
 }

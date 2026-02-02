@@ -10,12 +10,22 @@
 <html>
 <head>
     <title>Fettes Scavenger Hunt - Route Preview </title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/userInterface/userRoutePreview.css">
 </head>
+
 <body>
+<div class="navbar">
+    <a href="${pageContext.request.contextPath}/UserRoutePresetsServlet"><img src="${pageContext.request.contextPath}/img/backbutton.svg" alt="backbutton"></a>
+    <h2>${presetName}</h2>
+</div>
+
+<div class="listoflocations">
 <ol>
 <c:forEach var="item" items="${listOfLocationNames}">
   <li>${item}</li>
 </c:forEach>
 </ol>
+    <div class="submit"><a href="UserMainNavServlet?chosenRouteName=${presetName}">Submit</a></div>
+</div>
 </body>
 </html>
