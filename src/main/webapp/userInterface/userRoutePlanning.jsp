@@ -18,12 +18,9 @@
     <input type="submit" value="Choose from presets.." class="presetbutton">
 </form>
 
-<button onclick="launchRouteCustomisation()" class="custombutton">Customise a route...</button>
+<form action="${pageContext.request.contextPath}/UserChooseYourLocationServlet" method="get">
+    <input type="submit" value="Customise a route..." class="custombutton">
+</form>
 </body>
 
-<script>
-    function launchRouteCustomisation(){
-        window.location = "userChooseYourLocation.jsp"
-    }
-</script>
 </html>

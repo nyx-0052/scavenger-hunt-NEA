@@ -16,6 +16,7 @@ public class DBHandler {
         }
     }
 
+    // LOCATIONS TABLE
     /**
      * Generates a location object from locationID
      * @param locationID
@@ -63,6 +64,40 @@ public class DBHandler {
             System.out.println("Error in objects.DBHandler > getCorrectAnswer");
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * @param locationID
+     * @return name of location as a String
+     */
+    public String getLocationName(int locationID) {
+        String sql = "SELECT name FROM locations WHERE location_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, locationID);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("name");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > getallLocationNames");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * @return number of records in locations table (int)
+     */
+    public int sizeOfLocations(){
+        String sql = "SELECT COUNT(location_id) FROM locations";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("COUNT(location_id)");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > sizeOfLocations");
+            e.printStackTrace();
+            return -1;
         }
     }
 
