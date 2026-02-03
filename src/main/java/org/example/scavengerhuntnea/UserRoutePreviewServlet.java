@@ -15,17 +15,17 @@ import java.util.ArrayList;
 public class UserRoutePreviewServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String presetname = req.getParameter("preset");
+        String preset = req.getParameter("preset");
 
         DBHandler db = new DBHandler();
-        LocationRoute chosenpreset = new LocationRoute(db.getRoutePath(presetname));
+        LocationRoute chosenpreset = new LocationRoute(db.getRoutePath(preset));
         ArrayList<Location> routeofLocations = chosenpreset.getRoute();
         ArrayList<String> locationNames = new ArrayList<>();
         for (int i = 0; i< routeofLocations.size(); i++){
             Location currentLocation = routeofLocations.get(i);
             locationNames.add(currentLocation.getName());
         }
-        req.setAttribute("presetName", presetname);
+        req.setAttribute("presetName", preset);
         req.setAttribute("listOfLocationNames", locationNames);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userRoutePreview.jsp");
         rd.forward(req, res);

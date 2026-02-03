@@ -19,13 +19,12 @@
 </div>
 
 <div class="listoflocations required">
-    <form onsubmit="return validation()" action="${pageContext.request.contextPath}/userInterface/userYourRoute.jsp">
-        <c:forEach var="item" items="${listofLocationNames}">
+    <form onsubmit="return validation()" action="${pageContext.request.contextPath}/UserYourRouteServlet" method="get">
+        <c:forEach var="item" items="${listofLocations}">
             <div class="labelLocation">
-                <label for="${item}">${item}</label>
-                <input type="checkbox" name="checkedlocation" value="">
+                <label for="checkedlocation">${item.getLocationID()}. ${item.getName()}</label>
+                <input type="checkbox" name="checkedlocation" value="${item.getLocationID()}">
             </div>
-            <br>
         </c:forEach>
         <input type="submit" value="Submit">
     </form>
@@ -44,14 +43,6 @@
             return false;
         }
     }
-
-    // function send() {
-    //     // Source - https://stackoverflow.com/a/53511281
-    //     // Posted by flyingfox, modified by community. See post 'Timeline' for change history
-    //     // Retrieved 2026-02-03, License - CC BY-SA 4.0
-    //     var checked = $("input:checkbox:checked");
-    //     return checked;
-    // }
 </script>
 </body>
 </html>

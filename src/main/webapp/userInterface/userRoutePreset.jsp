@@ -22,8 +22,8 @@
 </div>
 
 <div class="listofroutes">
-        <c:forEach var="item" items="${listOfPresetNames}">
-            <div><a href="UserRoutePreviewServlet?preset=${item}">${item}</a></div>
+        <c:forEach var="item" items="${listofPresets}">
+            <div><a href="UserRoutePreviewServlet?preset=${item.getName()}">${item.getName()}</a></div>
         </c:forEach>
 </div>
 </body>
