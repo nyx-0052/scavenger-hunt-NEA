@@ -32,6 +32,7 @@ li{
     text-decoration: none;
     color: #CF5882;
     font-size: 20px;
+    list-style-type: none;
 }
 
 .submit{
@@ -52,7 +53,7 @@ a{
 
 }
 
-img {
+input[type="image"] {
     height: 60px;
     width: auto;
 }

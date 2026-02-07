@@ -15,17 +15,22 @@
 
 <body>
 <div class="navbar">
-    <a href="${pageContext.request.contextPath}/UserRoutePresetsServlet"><img src="${pageContext.request.contextPath}/img/backbutton.svg" alt="backbutton"></a>
-    <h2>${presetName}</h2>
+    <!--
+Source - https://stackoverflow.com/a/8683553
+Posted by Andrew Barber, modified by community. See post 'Timeline' for change history
+Retrieved 2026-02-07, License - CC BY-SA 3.0
+-->
+    <input type="image" src="${pageContext.request.contextPath}/img/backbutton.svg" onclick="history.back()"/>
+    <h2>${headerName}</h2>
 </div>
 
 <div class="listoflocations">
-<ol>
-<c:forEach var="item" items="${listOfLocationNames}">
-  <li>${item}</li>
+<ul>
+<c:forEach var="item" items="${listOfLocations}">
+  <li>${item.getLocationID()}. ${item.getName()}</li>
 </c:forEach>
-</ol>
-    <div class="submit"><a href="UserMainNavServlet?chosenRouteName=${presetName}">Submit</a></div>
+</ul>
+    <div class="submit"><a href="UserMainNavServlet?chosenRoute=${listOfLocations}">Submit</a></div>
 </div>
 </body>
 </html>

@@ -15,14 +15,15 @@ import java.util.ArrayList;
 public class UserRoutePresetsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        ArrayList <LocationRoute> listOfPresets = new ArrayList<>();
+        ArrayList <String> listOfPresetNames = new ArrayList<>();
         DBHandler db = new DBHandler();
         int numberOfRoutes = db.sizeOfRoutePresets();
+        res.getWriter();
         for (int i=1; i < numberOfRoutes+1; i++){
-            LocationRoute route = new LocationRoute(i);
-            listOfPresets.add(route);
+            String routeName = db.getRoutePresetName(i);
+            listOfPresetNames.add(routeName);
         }
-        req.setAttribute("listofPresets", listOfPresets);
+        req.setAttribute("listOfPresetNames", listOfPresetNames);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userRoutePreset.jsp");
         rd.forward(req, res);
     }

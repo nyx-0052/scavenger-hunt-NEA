@@ -19,7 +19,7 @@
 </div>
 
 <div class="listoflocations required">
-    <form onsubmit="return validation()" action="${pageContext.request.contextPath}/UserYourRouteServlet" method="get">
+    <form onsubmit="return validation()" action="${pageContext.request.contextPath}/UserRoutePreviewFromCustomisationServlet" method="get">
         <c:forEach var="item" items="${listofLocations}">
             <div class="labelLocation">
                 <label for="checkedlocation">${item.getLocationID()}. ${item.getName()}</label>

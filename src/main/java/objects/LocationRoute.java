@@ -3,6 +3,7 @@ package objects;
 import java.util.ArrayList;
 
 public class LocationRoute {
+    private String name;
     private ArrayList<Location> route = new ArrayList<>();
 
     // constructor 1: parameter - location id (used with preset routes)

@@ -11,8 +11,8 @@ import objects.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/UserRoutePreviewServlet")
-public class UserRoutePreviewServlet extends HttpServlet {
+@WebServlet("/UserRoutePreviewFromPresetsServlet")
+public class UserRoutePreviewFromPresetsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String preset = req.getParameter("preset");
@@ -20,13 +20,9 @@ public class UserRoutePreviewServlet extends HttpServlet {
         DBHandler db = new DBHandler();
         LocationRoute chosenpreset = new LocationRoute(db.getRoutePath(preset));
         ArrayList<Location> routeofLocations = chosenpreset.getRoute();
-        ArrayList<String> locationNames = new ArrayList<>();
-        for (int i = 0; i< routeofLocations.size(); i++){
-            Location currentLocation = routeofLocations.get(i);
-            locationNames.add(currentLocation.getName());
-        }
-        req.setAttribute("presetName", preset);
-        req.setAttribute("listOfLocationNames", locationNames);
+
+        req.setAttribute("headerName", preset);
+        req.setAttribute("listOfLocations", routeofLocations);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userRoutePreview.jsp");
         rd.forward(req, res);
     }

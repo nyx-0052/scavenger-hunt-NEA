@@ -11,10 +11,9 @@ import objects.Location;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-@WebServlet("/UserYourRouteServlet")
-public class UserYourRouteServlet extends HttpServlet {
+@WebServlet("/UserRoutePreviewFromCustomisationServlet")
+public class UserRoutePreviewFromCustomisationServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String[] chosenLocationIDs = req.getParameterValues("checkedlocation");
@@ -26,8 +25,11 @@ public class UserYourRouteServlet extends HttpServlet {
             chosenLocationObjects.add(tempLocation);
         }
 
-        req.setAttribute("chosenLocations", chosenLocationObjects);
-        RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userYourRoute.jsp");
+        System.out.println(chosenLocationObjects);
+
+        req.setAttribute("headerName", "Your Route");
+        req.setAttribute("listOfLocations", chosenLocationObjects);
+        RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userRoutePreview.jsp");
         rd.forward(req, res);
     }
 }
