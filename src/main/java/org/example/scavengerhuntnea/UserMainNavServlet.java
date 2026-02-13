@@ -3,10 +3,7 @@ package org.example.scavengerhuntnea;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.*;
 import objects.DBHandler;
 import objects.Location;
 import objects.LocationRoute;
@@ -18,10 +15,8 @@ import java.util.ArrayList;
 public class UserMainNavServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        // this creates the chosen Location Route object
-        String presetname = req.getParameter("chosenRouteName");
-        DBHandler db = new DBHandler();
-        LocationRoute chosenpreset = new LocationRoute(db.getRoutePath(presetname));
+        HttpSession session = req.getSession();
+        ArrayList<Location> route = (ArrayList<Location>) session.getAttribute("LocationRouteArrayList");
 
         // adding cookie
         Cookie points = new Cookie("user_points", "0");
@@ -29,6 +24,6 @@ public class UserMainNavServlet extends HttpServlet {
 
         // test
         System.out.println(points.getValue());
-        System.out.println(chosenpreset.getRoute());
+        System.out.println(route);
     }
 }

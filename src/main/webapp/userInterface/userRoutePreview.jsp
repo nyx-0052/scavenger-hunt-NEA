@@ -30,7 +30,11 @@ Retrieved 2026-02-07, License - CC BY-SA 3.0
   <li>${item.getLocationID()}. ${item.getName()}</li>
 </c:forEach>
 </ul>
-    <div class="submit"><a href="UserMainNavServlet?chosenRoute=${listOfLocations}">Submit</a></div>
+
+    <form action="${pageContext.request.contextPath}/UserMainNavServlet">
+    <input type="submit" class="submit">
+    </form>
+
 </div>
 </body>
 </html>

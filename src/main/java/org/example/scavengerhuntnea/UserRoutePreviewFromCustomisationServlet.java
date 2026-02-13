@@ -6,8 +6,10 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import objects.DBHandler;
 import objects.Location;
+import objects.LocationRoute;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,11 +27,14 @@ public class UserRoutePreviewFromCustomisationServlet extends HttpServlet {
             chosenLocationObjects.add(tempLocation);
         }
 
-        System.out.println(chosenLocationObjects);
-
+        // for displaying purposes in JSP
         req.setAttribute("headerName", "Your Route");
         req.setAttribute("listOfLocations", chosenLocationObjects);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userRoutePreview.jsp");
         rd.forward(req, res);
+
+        // for accessing the route in Main Nav
+        HttpSession session = req.getSession();
+        session.setAttribute("LocationRouteArrayList", chosenLocationObjects);
     }
 }

@@ -42,8 +42,9 @@ li{
     background-color: #CF5882;
     width: 100%;
     position: absolute;
-    bottom: 10px;
     text-align: center;
+    font-size: 20px;
+    color: white;
 }
 
 a{

@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import objects.*;
 
 import java.io.IOException;
@@ -21,9 +22,14 @@ public class UserRoutePreviewFromPresetsServlet extends HttpServlet {
         LocationRoute chosenpreset = new LocationRoute(db.getRoutePath(preset));
         ArrayList<Location> routeofLocations = chosenpreset.getRoute();
 
+        // for displaying purposes in JSP
         req.setAttribute("headerName", preset);
         req.setAttribute("listOfLocations", routeofLocations);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userRoutePreview.jsp");
         rd.forward(req, res);
+
+        // for accessing the route in Main Nav
+        HttpSession session = req.getSession();
+        session.setAttribute("LocationRouteArrayList", routeofLocations);
     }
 }
