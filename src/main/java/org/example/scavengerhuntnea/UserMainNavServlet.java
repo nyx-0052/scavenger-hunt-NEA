@@ -18,12 +18,6 @@ public class UserMainNavServlet extends HttpServlet {
         HttpSession session = req.getSession();
         ArrayList<Location> route = (ArrayList<Location>) session.getAttribute("LocationRouteArrayList");
 
-//        // (A) School Map
-//        ArrayList<ArrayList> coords = new ArrayList<>();
-//        for (int i=0; i< route.size(); i++){
-//            ArrayList<int>
-//        }
-
         // adding cookie
         Cookie points = new Cookie("user_points", "0");
         res.addCookie(points);

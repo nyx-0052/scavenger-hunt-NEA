@@ -1,0 +1,43 @@
+/*For Part (a) School Map*/
+.map {
+    max-width: 1391px;
+    max-height: 1399px;
+}
+
+#imageWrapper{
+    position: relative;
+    zoom: 1;
+}
+
+.backgroundImage{
+    display: block;
+}
+
+.locationMarker{
+    height: 100px;
+    width: 100px;
+}
+
+/*Taken and modified from https://www.w3schools.com/howto/howto_js_popup.asp*/
+/* Popup container - can be anything you want */
+.popup {
+    position: absolute;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #9D7967;
+    color: white;
+    font-family: Verdana;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    z-index: 1;
+}
+
+/* Hide and show the popup */
+.popup .show {
+    visibility: visible;
+}

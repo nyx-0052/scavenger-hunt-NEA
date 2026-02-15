@@ -10,32 +10,19 @@
 <html>
 <head>
     <title>Navigation</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/userInterface/userMainNav.css">
     <style>
-        .map {
-            max-width: 1391px;
-            max-height: 1399px;
-            overflow: scroll;
-        }
-
-        #imageWrapper{
-            position: relative;
-            zoom: 1;
-        }
-
-        .backgroundImage{
-            display: block;
-        }
-
-        .locationMarker{
-            height: 100px;
-            width: 100px;
-        }
-
+        /* Part (a): Internal CSS for positioning markers and popups*/
         <c:forEach var="item" items="${route}">
-        #id${item.getLocationID()}{
+        #marker${item.getLocationID()} {
             position: absolute;
             bottom: ${1399-item.getYcoord()}px;
             left: ${item.getXcoord()-50}px;
+        }
+        #locationPopup${item.getLocationID()} {
+            position: absolute;
+            bottom: ${1399-item.getYcoord()+100}px;
+            left: ${item.getXcoord()-80}px;
         }
         </c:forEach>
     </style>
@@ -49,27 +36,35 @@
 <div id="imageWrapper">
     <img src="${pageContext.request.contextPath}/img/schoolMap.jpg" class="backgroundImage">
 
-<c:forEach var="item" items="${route}">
-    <img src="${pageContext.request.contextPath}/img/locationMarker.svg" class="locationMarker" id="id${item.getLocationID()}">
-</c:forEach>
+    <c:forEach var="item" items="${route}">
+        <div class="popup" onclick="popUp('locationPopup${item.getLocationID()}')">
+        <img src="${pageContext.request.contextPath}/img/locationMarker.svg" class="locationMarker" id="marker${item.getLocationID()}">
+        <span class="popuptext" id="locationPopup${item.getLocationID()}">${item.getLocationID()}. ${item.getName()}</span>
+        </div>
+    </c:forEach>
 </div>
 </div>
 
 <script src="https://unpkg.com/@panzoom/panzoom@4.6.1/dist/panzoom.min.js"></script>
 <script>
+    // Part (a)
+    // Zooming in and out of Map
     const element = document.getElementById("imageWrapper");
     const panzoom = Panzoom(element,{
         contain: "outside"
     });
-
-    function zoomIn(){
+    function zoomIn() {
         panzoom.zoomIn();
     }
-
     function zoomOut(){
         panzoom.zoomOut();
     }
 
+    // Location Popups - toggling visibility on click
+    function popUp(LocationPopUpID) {
+        var popup = document.getElementById(LocationPopUpID);
+        popup.classList.toggle("show");
+    }
 </script>
 </body>
 </html>
