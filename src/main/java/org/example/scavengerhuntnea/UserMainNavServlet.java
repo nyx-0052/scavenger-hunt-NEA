@@ -15,15 +15,16 @@ import java.util.ArrayList;
 public class UserMainNavServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        // retrieving Route from session and storing it as an attribute for JSTL in MainNav JSP
         HttpSession session = req.getSession();
         ArrayList<Location> route = (ArrayList<Location>) session.getAttribute("LocationRouteArrayList");
-
-        // adding cookie
-        Cookie points = new Cookie("user_points", "0");
-        res.addCookie(points);
 
         req.setAttribute("route", route);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userMainNav.jsp");
         rd.forward(req, res);
+
+        // adding cookie
+        Cookie points = new Cookie("user_points", "0");
+        res.addCookie(points);
     }
 }

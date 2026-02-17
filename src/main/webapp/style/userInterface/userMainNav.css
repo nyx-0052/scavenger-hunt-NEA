@@ -1,12 +1,41 @@
-/*For Part (a) School Map*/
-.map {
-    max-width: 1391px;
-    max-height: 1399px;
+/* For main layout (upperMenuBar, content (map) and lowerMenuBar)*/
+body{
+    background-color: #D3A1AB;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
+/* This includes styling for part (d) Total points counter*/
+.upperMenuBar, .lowerMenuBar{
+    padding: 10px;
+    height: 150px;
+    width: 100%;
+    background-color: #D3A1AB;
+
+    display: flex;
+    align-items: center;
+    color: white;
+    font-family: Verdana;
+}
+
+.upperMenuBar img{
+    height: 60px;
+    width: auto;
+}
+
+/* For Part (a) School Map*/
+.map {
+    position: relative;
+    margin: auto;
+    flex-grow: 1;
+}
+
+/* Used to overlay location marker images over school campus map*/
 #imageWrapper{
     position: relative;
     zoom: 1;
+    cursor: move;
 }
 
 .backgroundImage{
@@ -18,8 +47,9 @@
     width: 100px;
 }
 
+/* Popups to display the location ID and name*/
 /*Taken and modified from https://www.w3schools.com/howto/howto_js_popup.asp*/
-/* Popup container - can be anything you want */
+/* Popup container*/
 .popup {
     position: absolute;
 }
@@ -37,7 +67,56 @@
     z-index: 1;
 }
 
-/* Hide and show the popup */
 .popup .show {
     visibility: visible;
+}
+
+/* Zooming in and out*/
+.mapControls{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.mapControls button{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    background-color: #CF5882;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 8px;
+}
+
+/* For Part (b) Route Sidebar */
+.routeSidebar{
+    background-color: transparent;
+    width: 100px;
+    height: 100px;
+    border: none;
+}
+
+.routeSidebar img{
+    width: 60px;
+    height: 60px;
+}
+
+/* For Part (c) QR code scanner*/
+.QRcode{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: none;
+    background-color: #CF5882;
+    margin: auto;
+}
+
+.QRcode img{
+    width: 120px;
+    height: 120px;
 }
