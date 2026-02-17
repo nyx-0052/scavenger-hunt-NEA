@@ -55,8 +55,20 @@
 
 <!-- Lower menu bar; part (b) route sidebar & (c) QR code scanner here -->
 <div class="lowerMenuBar">
-    <button onclick="" class="routeSidebar"><img src="${pageContext.request.contextPath}/img/routeSidebar.svg"></button>
+    <button onclick="openSidebar()" id="routeSidebarButton"><img src="${pageContext.request.contextPath}/img/routeSidebar.svg"></button>
     <button onclick="" class="QRcode"><img src="${pageContext.request.contextPath}/img/QRCode.svg"></button>
+</div>
+
+<div id="routeSideBarContainer">
+    <div id="routeSideBarContent">
+    <span id="routeSideBarClose">X</span>
+    <h2>Your Route</h2>
+    <ul>
+        <c:forEach var="item" items="${route}">
+            <li>${item.getLocationID()}. ${item.getName()}</li>
+        </c:forEach>
+    </ul>
+    </div>
 </div>
 
 
@@ -68,6 +80,8 @@
     const panzoom = Panzoom(element,{
         contain: "outside"
     });
+    panzoom.zoomIn();
+
     function zoomIn() {
         panzoom.zoomIn();
     }
@@ -79,6 +93,24 @@
     function popUp(LocationPopUpID) {
         var popup = document.getElementById(LocationPopUpID);
         popup.classList.toggle("show");
+    }
+
+    // Part (b) Route sidebar
+    var sidebar = document.getElementById("routeSideBarContainer");
+    // to toggle visibility
+    var sidebarOpenButton = document.getElementById("routeSidebarButton");
+    function openSidebar(){
+        sidebar.style.display="block";
+    }
+    var sidebarCloseButton = document.getElementById("routeSideBarClose");
+    sidebarCloseButton.onclick= function(){
+        sidebar.style.display="none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == sidebar) {
+            sidebar.style.display = "none";
+        }
     }
 </script>
 </body>
