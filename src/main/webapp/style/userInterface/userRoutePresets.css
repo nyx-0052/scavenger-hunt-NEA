@@ -38,7 +38,7 @@ a{
     font-size: 20px;
 }
 
-img{
+input[type="image"] {
     height: 60px;
     width: auto;
 }
