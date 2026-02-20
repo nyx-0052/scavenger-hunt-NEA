@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Navigation</title>
+    <title>Fettes Scavenger Hunt - Navigation</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/userInterface/userMainNav.css">
     <style>
         /* Internal CSS for Part (a): for positioning location markers and popups*/
@@ -31,7 +31,7 @@
 <body>
 <!-- Upper menu bar; part (d) total point counter here -->
 <div class="upperMenuBar">
-    <h2>Cookie points displayed here</h2>
+    <div id="pointsCounter"></div>
     <img src="${pageContext.request.contextPath}/img/points.svg">
 </div>
 
@@ -118,6 +118,15 @@
         window.location = "${pageContext.request.contextPath}/userInterface/userQRCodeScanner.jsp"
     }
 
+    // Part (d) Total Points counter
+    var pointsCounter = document.getElementById("pointsCounter");
+    const cookies = document.cookie.split('; ');
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name === "user_points") {
+            pointsCounter.innerHTML = "<h2>" + value + "</h2>";
+        }
+    }
 </script>
 </body>
 </html>

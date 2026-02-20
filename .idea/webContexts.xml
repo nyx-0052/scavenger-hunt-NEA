@@ -4,6 +4,7 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/userInterface/userChooseYourLocation.jsp" value="file://$PROJECT_DIR$/src/main/webapp/userInterface" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/userInterface/userMainNav.jsp" value="file://$PROJECT_DIR$/src/main/webapp/userInterface" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/userInterface/userRoutePlanning.jsp" value="file://$PROJECT_DIR$/src/main/webapp/userInterface" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/userInterface/userRoutePreset.jsp" value="file://$PROJECT_DIR$/src/main/webapp/userInterface" />
       </map>

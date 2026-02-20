@@ -26,16 +26,17 @@
 
 
 <button onclick="cameraPerms()" id="cameraPerms">Camera Permissions</button>
+<!--For generating the drop-down menu and Start Scanning Button-->
 <div id="listCameras"></div>
 
-<!--For generating the QR code scanner and result-->
+<!--For generating the QR code scanner and result when a QR code is scanned-->
 <div id="reader"></div>
 <div id="scannedResult"></div>
 
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 <script>
     async function cameraPerms(){
-        <!--Toggles visibility of button off after clicked; clears up UI and prevents user from repeatedly getting list of devices-->
+        <!--Toggles visibility of Camera Permission button off after clicked; clears up UI and prevents user from repeatedly getting list of devices-->
         document.getElementById("cameraPerms").style.display="none";
 
         <!--Gets all possible cameras from device and generates 1) a dropdown menu with those cameras as options 2) button to launch scanner-->
@@ -58,7 +59,7 @@
     async function startScanning() {
         <!--Retrieves selected camera from menu and sets as cameraId (to be passed into the constructor)-->
         var retrievedValue = parseInt(document.getElementById("cameras").value);
-        var devices = await Html5Qrcode.getCameras(); // await is needed as the next line relies on this, and it needs some time to execute
+        var devices = await Html5Qrcode.getCameras();
         var cameraId = devices[retrievedValue].id;
 
         <!-- constructs QR code scanner -->

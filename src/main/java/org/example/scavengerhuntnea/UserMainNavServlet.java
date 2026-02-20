@@ -19,12 +19,12 @@ public class UserMainNavServlet extends HttpServlet {
         HttpSession session = req.getSession();
         ArrayList<Location> route = (ArrayList<Location>) session.getAttribute("LocationRouteArrayList");
 
+        // adding cookie
+        Cookie points = new Cookie("user_points", "50");
+        res.addCookie(points);
+
         req.setAttribute("route", route);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userMainNav.jsp");
         rd.forward(req, res);
-
-        // adding cookie
-        Cookie points = new Cookie("user_points", "0");
-        res.addCookie(points);
     }
 }

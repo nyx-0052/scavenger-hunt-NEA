@@ -24,6 +24,10 @@ body{
     width: auto;
 }
 
+button:hover{
+    background-color: #9D7967;
+}
+
 /* For Part (a) School Map*/
 .map {
     position: relative;
