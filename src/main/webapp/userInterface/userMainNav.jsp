@@ -56,7 +56,7 @@
 <!-- Lower menu bar; part (b) route sidebar & (c) QR code scanner here -->
 <div class="lowerMenuBar">
     <button onclick="openSidebar()" id="routeSidebarButton"><img src="${pageContext.request.contextPath}/img/routeSidebar.svg"></button>
-    <button onclick="" class="QRcode"><img src="${pageContext.request.contextPath}/img/QRCode.svg"></button>
+    <button onclick="openQRCodeScanner()" class="QRcode"><img src="${pageContext.request.contextPath}/img/QRCode.svg"></button>
 </div>
 
 <div id="routeSideBarContainer">
@@ -112,6 +112,12 @@
             sidebar.style.display = "none";
         }
     }
+
+    // Part (c) QR Code scanner
+    function openQRCodeScanner(){
+        window.location = "${pageContext.request.contextPath}/userInterface/userQRCodeScanner.jsp"
+    }
+
 </script>
 </body>
 </html>

@@ -1,0 +1,46 @@
+body{
+    background-color: #D3A1AB;
+    color: white;
+    font-family: Verdana;
+}
+
+.navbar{
+    display: flex;
+    justify-content: center;
+}
+
+h2{
+    position: relative;
+    margin: auto;
+    left: -30px;
+}
+
+input[type="image"] {
+    height: 60px;
+    width: auto;
+}
+
+li{
+    margin: 8px;
+}
+
+select{
+    height: 30px;
+    width: auto;
+}
+
+button{
+    margin: 10px;
+    font-size: 20px;
+    font-family: Verdana;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 14px;
+    background-color: #CF5882;
+}
+
+button:hover{
+    background-color: #9D7967;
+}
+

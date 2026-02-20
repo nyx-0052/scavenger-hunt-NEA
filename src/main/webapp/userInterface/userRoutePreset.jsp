@@ -17,7 +17,7 @@
 
 <body>
 <div class="navbar">
-    <a href="${pageContext.request.contextPath}/userInterface/userRoutePlanning.jsp"><img src="${pageContext.request.contextPath}/img/backbutton.svg" alt="backbutton"></a>
+    <input type="image" src="${pageContext.request.contextPath}/img/backbutton.svg" onclick="history.back()" alt="back button"/>
     <h2>Route Presets</h2>
 </div>
 
