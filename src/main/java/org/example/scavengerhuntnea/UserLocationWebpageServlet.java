@@ -1,5 +1,6 @@
 package org.example.scavengerhuntnea;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,16 +18,12 @@ import java.util.ArrayList;
 public class UserLocationWebpageServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
         int locationID = Integer.parseInt(req.getParameter("locationID"));
-
         DBHandler db = new DBHandler();
         Location location = db.createLocationfromID(locationID);
 
-        res.setContentType("text/html");
-        PrintWriter out = res.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + location + "</h1>");
-        out.println("</body></html>");
+        req.setAttribute("locationObject", location);
+        RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userLocationWebpage.jsp");
+        rd.forward(req, res);
     }
 }

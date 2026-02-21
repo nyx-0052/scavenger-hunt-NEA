@@ -91,8 +91,6 @@
             } else{
                 alert("This is an external QR code. Make sure the QR code belongs to the scavenger hunt before trying again.")
             }
-                html5QrCode.stop()
-                html5QrCode.clear()
             })
             .catch((err) => {
                 console.log(err);

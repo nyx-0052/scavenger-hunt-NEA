@@ -1,0 +1,54 @@
+body{
+    padding: 15px;
+    background-color: #D3A1AB;
+    font-family: Verdana;
+    color: white;
+}
+
+h4{
+    margin: 5px;
+    display: inline;
+}
+
+a:link{
+    color: white;
+}
+
+.qnaContainer{
+    background-color: #F0F0EA;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 20px;
+    color: #CF5882;
+    display: flex;
+    flex-direction: column;
+}
+
+.qnaHeader{
+    font-style: italic;
+}
+
+.option{
+    margin-top: 5px;
+}
+
+input[type="radio"]{
+    accent-color: #CF5882;
+    height: 15px;
+    width: 15px;
+    margin: 5px;
+}
+
+input[type="submit"]{
+    font-size: 20px;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 14px;
+    background-color: #CF5882;
+    margin: auto;
+}
+
+input[type="submit"]:hover{
+    background-color: #9D7967;
+}
