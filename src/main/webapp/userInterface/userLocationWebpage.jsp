@@ -19,7 +19,7 @@
 <h4>Curious? Find out more:</h4>
 <a href="${locationObject.getSchoolLink()}">${locationObject.getSchoolLink()}</a>
 
-<form action="">
+<form onsubmit="checkAnswer()" action="">
   <div class="qnaContainer">
     <h4 class="qnaHeader">? QNA</h4>
     <h4>${locationObject.getQuestion()}</h4>
@@ -41,5 +41,24 @@
     <input type="submit">
   </div>
 </form>
+
+<script>
+  function checkAnswer(){
+    var correctAnswerValue = "${locationObject.getCorrectOption()}";
+    if (document.querySelector('input[name="qna"]:checked').value==correctAnswerValue){
+      window.alert("Correct! +50 points")
+      const cookies = document.cookie.split('; ');
+      for (const cookie of cookies) {
+        const [name, value] = cookie.split('=');
+        if (name === "user_points") {
+          var newPoints = parseInt(value) + 50;
+          document.cookie= "user_points="+ newPoints;
+        }
+      }
+      } else{
+      alert("Incorrect! The correct answer is " + "${correctAnswer}.")
+    }
+  }
+</script>
 </body>
 </html>

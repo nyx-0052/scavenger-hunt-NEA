@@ -21,8 +21,10 @@ public class UserLocationWebpageServlet extends HttpServlet {
         int locationID = Integer.parseInt(req.getParameter("locationID"));
         DBHandler db = new DBHandler();
         Location location = db.createLocationfromID(locationID);
+        String correctOptionString = location.getOption();
 
         req.setAttribute("locationObject", location);
+        req.setAttribute("correctAnswer", correctOptionString);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userLocationWebpage.jsp");
         rd.forward(req, res);
     }
