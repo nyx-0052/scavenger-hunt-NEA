@@ -24,10 +24,6 @@ body{
     width: auto;
 }
 
-button:hover{
-    background-color: #9D7967;
-}
-
 /* For Part (a) School Map*/
 .map {
     position: relative;
@@ -194,16 +190,20 @@ button:hover{
 }
 
 /* For Part (c) QR code scanner*/
+form{
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .QRcode{
     width: 150px;
     height: 150px;
     border-radius: 50%;
     border: none;
     background-color: #CF5882;
-    margin: auto;
 }
 
-.QRcode img{
-    width: 120px;
+button img {
     height: 120px;
+    width: auto;
 }

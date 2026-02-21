@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: elsa_lty
@@ -34,6 +35,7 @@
 <div id="scannedResult"></div>
 
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     async function cameraPerms(){
         <!--Toggles visibility of Camera Permission button off after clicked; clears up UI and prevents user from repeatedly getting list of devices-->
@@ -72,7 +74,23 @@
                 rememberLastUsedCamera: true
             },
             (result) => {
-                document.getElementById('scannedResult').innerHTML = "<h3>Success!</h3>"
+            if (result.startsWith("FettesScavengerHuntLocationQRCODE=")){
+                var found = false;
+                const tempResultArray = result.split("=");
+                var locationIDtoCheck = parseInt(tempResultArray[1]);
+
+                <c:forEach var="item" items="${UnvisitedLocations}">
+                if ("${item.getLocationID()}"== locationIDtoCheck){
+                    found= true;
+                    window.location = "${pageContext.request.contextPath}/UserLocationWebpageServlet?locationID="+ locationIDtoCheck;
+                }
+                </c:forEach>
+                if (!found){
+                    alert("This location is not in your route, or has been visited already.")
+                }
+            } else{
+                alert("This is an external QR code. Make sure the QR code belongs to the scavenger hunt before trying again.")
+            }
                 html5QrCode.stop()
                 html5QrCode.clear()
             })

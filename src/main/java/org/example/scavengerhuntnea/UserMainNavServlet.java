@@ -17,10 +17,10 @@ public class UserMainNavServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         // retrieving Route from session and storing it as an attribute for JSTL in MainNav JSP
         HttpSession session = req.getSession();
-        ArrayList<Location> route = (ArrayList<Location>) session.getAttribute("LocationRouteArrayList");
+        ArrayList<Location> route = (ArrayList<Location>) session.getAttribute("UnvisitedLocations");
 
         // adding cookie
-        Cookie points = new Cookie("user_points", "50");
+        Cookie points = new Cookie("user_points", "0");
         res.addCookie(points);
 
         req.setAttribute("route", route);

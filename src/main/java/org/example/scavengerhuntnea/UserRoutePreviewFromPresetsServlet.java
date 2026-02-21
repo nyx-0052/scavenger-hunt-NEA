@@ -29,7 +29,9 @@ public class UserRoutePreviewFromPresetsServlet extends HttpServlet {
         rd.forward(req, res);
 
         // for accessing the route in Main Nav
+        ArrayList<Location> VisitedLocations = new ArrayList<Location>();
         HttpSession session = req.getSession();
-        session.setAttribute("LocationRouteArrayList", routeofLocations);
+        session.setAttribute("UnvisitedLocations", routeofLocations);
+        session.setAttribute("VisitedLocations", VisitedLocations);
     }
 }
