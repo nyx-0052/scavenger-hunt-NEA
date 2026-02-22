@@ -19,7 +19,9 @@
 <h4>Curious? Find out more:</h4>
 <a href="${locationObject.getSchoolLink()}">${locationObject.getSchoolLink()}</a>
 
-<form onsubmit="checkAnswer()" action="">
+<form onsubmit="checkAnswer()" action="${pageContext.request.contextPath}/UserPostLocationSubmissionServlet">
+  <input type="hidden" name="locationID" value="${locationObject.getLocationID()}">
+
   <div class="qnaContainer">
     <h4 class="qnaHeader">? QNA</h4>
     <h4>${locationObject.getQuestion()}</h4>
