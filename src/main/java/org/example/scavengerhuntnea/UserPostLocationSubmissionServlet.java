@@ -45,6 +45,7 @@ public class UserPostLocationSubmissionServlet extends HttpServlet {
             rd.forward(req, res);
         } else{
             req.setAttribute("route", unvisitedLocations);
+            req.setAttribute("vistedLocations", visitedLocations);
             RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userMainNav.jsp");
             rd.forward(req, res);
         }

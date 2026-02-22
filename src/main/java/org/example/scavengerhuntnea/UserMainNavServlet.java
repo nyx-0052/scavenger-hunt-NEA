@@ -18,12 +18,14 @@ public class UserMainNavServlet extends HttpServlet {
         // retrieving Route from session and storing it as an attribute for JSTL in MainNav JSP
         HttpSession session = req.getSession();
         ArrayList<Location> route = (ArrayList<Location>) session.getAttribute("UnvisitedLocations");
+        ArrayList<Location> visitedLocations = (ArrayList<Location>) session.getAttribute("VisitedLocations");
 
         // adding cookie
         Cookie points = new Cookie("user_points", "0");
         res.addCookie(points);
 
         req.setAttribute("route", route);
+        req.setAttribute("vistedLocations", visitedLocations);
         RequestDispatcher rd = req.getRequestDispatcher("/userInterface/userMainNav.jsp");
         rd.forward(req, res);
     }

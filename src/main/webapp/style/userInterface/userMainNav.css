@@ -67,6 +67,18 @@ body{
     z-index: 1;
 }
 
+.popup .popuptextCompleted {
+    visibility: hidden;
+    width: 160px;
+    background-color: #50B795;
+    color: white;
+    font-family: Verdana;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    z-index: 1;
+}
+
 .popup .show {
     visibility: visible;
 }

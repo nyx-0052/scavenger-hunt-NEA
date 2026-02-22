@@ -25,6 +25,19 @@
             left: ${item.getXcoord()-80}px;
         }
         </c:forEach>
+
+        <c:forEach var="item" items="${vistedLocations}">
+        #locationMarker${item.getLocationID()} {
+            position: absolute;
+            bottom: ${1399-item.getYcoord()}px;
+            left: ${item.getXcoord()-50}px;
+        }
+        #locationPopup${item.getLocationID()} {
+            position: absolute;
+            bottom: ${1399-item.getYcoord()+100}px;
+            left: ${item.getXcoord()-80}px;
+        }
+        </c:forEach>
     </style>
 </head>
 
@@ -46,6 +59,14 @@
         <span class="popuptext" id="locationPopup${item.getLocationID()}">${item.getLocationID()}. ${item.getName()}</span>
         </div>
     </c:forEach>
+
+    <c:forEach var="item" items="${vistedLocations}">
+        <div class="popup" onclick="popUp('locationPopup${item.getLocationID()}')">
+            <img src="${pageContext.request.contextPath}/img/completedLocationMarker.svg" class="locationMarker" id="locationMarker${item.getLocationID()}">
+            <span class="popuptextCompleted" id="locationPopup${item.getLocationID()}">${item.getLocationID()}. ${item.getName()}</span>
+        </div>
+    </c:forEach>
+
 </div>
     <div class="mapControls">
         <button type="button" onclick="zoomIn()">+</button>
