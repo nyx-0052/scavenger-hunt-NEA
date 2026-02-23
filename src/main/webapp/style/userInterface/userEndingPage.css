@@ -1,0 +1,27 @@
+img{
+    height: 100px;
+    width: auto;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #D3A1AB;
+    background-image: url("../../img/flags.png");
+    background-repeat: repeat;
+    font-family: Verdana;
+    color: white;
+}
+
+h1{
+    font-size: 40px;
+    text-align: center;
+}
+
+.points{
+    display: flex;
+    gap: 10px;
+}
+
