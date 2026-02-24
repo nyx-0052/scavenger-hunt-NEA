@@ -10,8 +10,22 @@
 <html>
 <head>
     <title>Fettes Scavenger Hunt - Authentication</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/adminInterface/adminAuthentication.css">
 </head>
+
 <body>
-<p>This is the authentication page for admins.</p>
+<form action="${pageContext.request.contextPath}/AdminAuthenticationServlet" method="post">
+    <label for="password">Please enter the password to continue:</label>
+    <input type="password" name="password" id="password" required>
+    <div id="wrongInput"></div>
+    <input type="submit" value="Log in">
+</form>
+
+<script>
+    if ("${incorrect}"==="1"){
+        document.getElementById("wrongInput").innerHTML= "<p>Incorrect. Please try again.</p>"
+    }
+</script>
+
 </body>
 </html>

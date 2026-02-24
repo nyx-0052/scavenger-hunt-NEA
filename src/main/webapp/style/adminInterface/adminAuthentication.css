@@ -1,0 +1,47 @@
+body{
+    font-family: Verdana;
+    background-color: #9D7967;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form{
+    background-color: #F0F0EA;
+    border-radius: 8px;
+    border: none;
+    color:#44290C;
+    padding: 8px;
+    font-size: 18px;
+    height: 250px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+form p{
+    font-size: 12px;
+    color: darkred;
+    margin-top: 0;
+}
+
+input[type="password"]{
+    width: 250px;
+}
+
+input[type="submit"]{
+    background-color: #44290C;
+    color: white;
+    height: 40px;
+    width: 30%;
+    padding: 2px;
+    border-radius: 8px;
+    border: none;
+}
+
+input[type="submit"]:hover{
+    background-color: #D3A1AB;
+}
