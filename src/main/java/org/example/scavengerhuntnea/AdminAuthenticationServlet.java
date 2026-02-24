@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+
 import java.io.IOException;
 
 @WebServlet("/AdminAuthenticationServlet")
@@ -14,10 +15,11 @@ public class AdminAuthenticationServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String userInput = req.getParameter("password");
-        String correctPassword = "Fettes1870scavengerNEA!";
+        String correctPassword = "123";
+        //Fettes1870scavengerNEA!
 
         if (userInput.equals(correctPassword)){
-            RequestDispatcher rd = req.getRequestDispatcher("/adminInterface/adminDataAnalysis.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/AdminDataAnalysisServlet");
             rd.forward(req, res);
         } else{
             req.setAttribute("incorrect", "1");

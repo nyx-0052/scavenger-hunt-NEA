@@ -30,5 +30,13 @@
 
 </div>
 
+<div>
+    <p>${ageData}</p>
+    <p>${genderData}</p>
+    <p>${reasonForVisitData}</p>
+    <p>${reasonForVisitOther}</p>
+    <p>${currentSchoolData}</p>
+    <p>${currentSchoolOther}</p>
+</div>
 </body>
 </html>

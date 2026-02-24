@@ -238,4 +238,132 @@ public class DBHandler {
             }
         }
     }
+
+    /**
+     * @return length of (how many records there are) in the user_info table
+     */
+    public int sizeOfUserInfo(){
+        String sql = "SELECT COUNT(user_id) FROM user_info";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("COUNT(user_id)");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > sizeOfUserInfo");
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    /**
+     * GENDER - Counts the number of answers which have the value (parameter)
+     * @param value
+     * @return number of answers
+     */
+    public int countGender(int value){
+        String sql = "SELECT COUNT(gender) FROM user_info WHERE gender =?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, value);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("COUNT(gender)");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > countGender");
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    /**
+     * AGE - Counts the number of answers which have the value (parameter)
+     * @param value
+     * @return number of answers
+     */
+    public int countAge(int value){
+        String sql = "SELECT COUNT(age) FROM user_info WHERE age =?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, value);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("COUNT(age)");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > countAge");
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    /**
+     * REASON FOR VISIT - Counts the number of answers which have the value (parameter)
+     * @param value
+     * @return number of answers
+     */
+    public int countReasonForVisit(int value){
+        String sql = "SELECT COUNT(reason_for_visit) FROM user_info WHERE reason_for_visit =?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, value);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("COUNT(reason_for_visit)");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > countReasonForVisit");
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    /**
+     * @param userID
+     * @return other reasons for visiting as a String
+     */
+    public String getReasonForVisitOther(int userID){
+        String sql = "SELECT * FROM user_info WHERE user_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("reason_for_visit_other");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > getRoutePath");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * CURRENT SCHOOL - Counts the number of answers which have the value (parameter)
+     * @param value
+     * @return number of answers
+     */
+    public int countCurrentSchool(int value){
+        String sql = "SELECT COUNT(current_schl) FROM user_info WHERE current_schl =?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, value);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("COUNT(current_schl)");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > countCurrentSchool");
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+    /**
+     * @param userID
+     * @return other current schools as a String
+     */
+    public String getCurrentSchoolOther(int userID){
+        String sql = "SELECT * FROM user_info WHERE user_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, userID);
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getString("current_schl_other");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > getCurrentSchoolOther");
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
