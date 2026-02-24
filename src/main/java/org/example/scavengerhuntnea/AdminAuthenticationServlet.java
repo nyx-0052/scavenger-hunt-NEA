@@ -17,7 +17,7 @@ public class AdminAuthenticationServlet extends HttpServlet {
         String correctPassword = "Fettes1870scavengerNEA!";
 
         if (userInput.equals(correctPassword)){
-            RequestDispatcher rd = req.getRequestDispatcher("/adminInterface/adminControls.jsp");
+            RequestDispatcher rd = req.getRequestDispatcher("/adminInterface/adminDataAnalysis.jsp");
             rd.forward(req, res);
         } else{
             req.setAttribute("incorrect", "1");
