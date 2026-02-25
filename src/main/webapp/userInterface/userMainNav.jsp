@@ -84,7 +84,7 @@
 
 <div id="routeSideBarContainer">
     <div id="routeSideBarContent">
-    <span id="routeSideBarClose">X</span>
+    <span id="routeSideBarClose">x</span>
     <h2>Your Route</h2>
     <ul>
         <c:forEach var="item" items="${route}">

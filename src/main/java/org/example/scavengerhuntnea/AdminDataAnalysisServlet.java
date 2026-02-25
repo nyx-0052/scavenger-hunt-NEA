@@ -20,9 +20,9 @@ public class AdminDataAnalysisServlet extends HttpServlet {
         ArrayList<Integer> genderData = new ArrayList<Integer>();
         ArrayList<Integer> ageData = new ArrayList<Integer>();
         ArrayList<Integer> reasonForVisitData = new ArrayList<Integer>();
-        ArrayList<String> reasonForVisitOther = new ArrayList<String>();
+        String reasonForVisitOther = "";
         ArrayList<Integer> currentSchoolData = new ArrayList<Integer>();
-        ArrayList<String> currentSchoolOther = new ArrayList<String>();
+        String currentSchoolOther = "";
 
         // populating each arrayList with the data
         for(int i=1; i<5; i++){
@@ -42,10 +42,10 @@ public class AdminDataAnalysisServlet extends HttpServlet {
             String tempReason=db.getReasonForVisitOther(i);
             String tempSchool=db.getCurrentSchoolOther(i);
             if(tempSchool!=null){
-                currentSchoolOther.add(tempSchool);
+                currentSchoolOther += tempSchool+", ";
             }
             if(tempReason!=null){
-                reasonForVisitOther.add(tempReason);
+                reasonForVisitOther +=tempReason+", ";
             }
         }
 

@@ -25,6 +25,10 @@
     overflow: hidden;
 }
 
+.withOthers{
+    padding-bottom: 15px;
+}
+
 .chartContainer h4{
     font-family: Verdana;
     color: #44290C;
@@ -39,20 +43,25 @@
     align-self: center;
     width: 100%;
     flex-grow: 1;
+    z-index:1;
 }
 
-.chartContainer button{
+form{
+    z-index:2;
+    align-self: center;
+}
+
+input[type="submit"]{
+    width: 15vw;
     background-color: #44290C;
     color: #F0F0EA;
     font-size: 1.1vw;
     font-family: Verdana;
-    width: 50%;
     border-radius: 8px;
     border: none;
     padding: 10px;
     margin-top: 8px;
-    align-self: center;
 }
-.chartContainer button:hover{
+input[type="submit"]:hover{
     background-color: #D3A1AB;
 }

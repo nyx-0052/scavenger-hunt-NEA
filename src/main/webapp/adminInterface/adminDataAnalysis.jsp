@@ -36,19 +36,27 @@
         <h4>Age</h4>
         <div id="ageChart" class="chart"></div>
     </div>
-    <div class="chartContainer">
+    <div class="chartContainer withOthers">
         <h4>Reason for Visit</h4>
         <div id="reasonForVisitChart" class="chart"></div>
-        <button>Explore Others...</button>
+        <form action="${pageContext.request.contextPath}/adminInterface/adminDataAnalysisOthers.jsp">
+            <input type="hidden" name="header" value="Reason for Visiting">
+            <input type="hidden" name="listOfValues" value="${reasonForVisitOther}">
+            <input type="submit" value="Explore Others...">
+        </form>
     </div>
     <div class="chartContainer">
         <h4>Gender</h4>
         <div id="genderChart" class="chart"></div>
     </div>
-    <div class="chartContainer">
+    <div class="chartContainer withOthers">
         <h4>Current School</h4>
         <div id="currentSchoolChart" class="chart"></div>
-        <button>Explore Others...</button>
+        <form action="${pageContext.request.contextPath}/adminInterface/adminDataAnalysisOthers.jsp">
+            <input type="hidden" name="header" value="Current School">
+            <input type="hidden" name="listOfValues" value="${currentSchoolOther}">
+            <input type="submit" value="Explore Others...">
+        </form>
     </div>
 </div>
 

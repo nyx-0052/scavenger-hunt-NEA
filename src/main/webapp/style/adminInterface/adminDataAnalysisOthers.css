@@ -1,0 +1,41 @@
+.main{
+    background-color: #9D7967;
+    color: white;
+    font-family: Verdana;
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 40px 80px;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+h2{
+    position: relative;
+    margin: auto;
+    left: -30px;
+}
+
+.list{
+    background-color: #F0F0EA;
+    border-radius: 8px;
+    border: none;
+    padding: 20px;
+    overflow: scroll;
+    color: #44290C;
+    flex-grow:1;
+}
+
+.list p{
+    font-size: 1.2vw;
+}
+
+input[type="image"] {
+    height: 60px;
+    width: auto;
+}
