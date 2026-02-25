@@ -17,7 +17,6 @@ public class AdminDataAnalysisServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         DBHandler db = new DBHandler();
         int numberOfEntries = db.sizeOfUserInfo();
-        System.out.println(numberOfEntries);
         ArrayList<Integer> genderData = new ArrayList<Integer>();
         ArrayList<Integer> ageData = new ArrayList<Integer>();
         ArrayList<Integer> reasonForVisitData = new ArrayList<Integer>();
