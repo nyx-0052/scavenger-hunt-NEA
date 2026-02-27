@@ -1,0 +1,65 @@
+.main{
+    padding: 30px 80px;
+}
+.navbar {
+    display: flex;
+    justify-content: center;
+    font-family: Verdana;
+    box-sizing: border-box;
+}
+
+h2{
+    position: relative;
+    margin: auto;
+    left: -30px;
+    color: #F0F0EA;
+}
+
+.listoflocations{
+    background-color: #F0F0EA;
+    border-radius: 8px;
+    border: none;
+    height: 100%;
+    width: 100%;
+    padding: 14px 40px;
+    margin: 10px 0;
+    font-family: Verdana;
+    overflow-y: scroll;
+    box-sizing: border-box;
+}
+
+li{
+    margin: 10px;
+    text-decoration: none;
+    color: #44290C;
+    font-size: 20px;
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+
+}
+
+input[type="image"] {
+    height: 60px;
+    width: auto;
+}
+
+input[type="submit"]{
+    color: white;
+    font-size: 20px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 30px;
+    padding: 14px;
+    background-color: #44290C;
+    width: 100%;
+    text-align: center;
+}
+
+input[type="submit"]:hover{
+    background-color: #D3A1AB;
+}

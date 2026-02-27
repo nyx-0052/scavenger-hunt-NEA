@@ -1,24 +1,18 @@
-body{
-    background-color: #D3A1AB;
-    color: white;
-    font-family: Verdana;
-    padding: 10px;
-}
-
-.navbar{
-    display: flex;
-    justify-content: center;
+.main{
+    padding: 30px 80px;
 }
 
 h2{
-    position: relative;
-    margin: auto;
-    left: -30px;
+    color: #F0F0EA;
+}
+
+input[type="text"]{
+    font-size: 20px;
+    width: 100%;
 }
 
 .listoflocations{
-    overflow: scroll;
-    box-sizing: border-box;
+    overflow-y: scroll;
 }
 
 .labelLocation{
@@ -32,14 +26,14 @@ h2{
 }
 
 label{
-    color: #CF5882;
+    color: #44290C;
     font-size: 20px;
 }
 
 input[type="checkbox"]{
     height: 15px;
     width: 15px;
-    accent-color: #CF5882;
+    accent-color: #44290C;
 }
 
 input[type="submit"]{
@@ -48,13 +42,11 @@ input[type="submit"]{
     border-radius: 8px;
     border: none;
     padding: 14px;
-    background-color: #CF5882;
+    background-color: #44290C;
     width: 100%;
     text-align: center;
-    box-sizing: border-box;
 }
 
-img {
-    height: 60px;
-    width: auto;
+input[type="submit"]:hover{
+    background-color: #D3A1AB;
 }

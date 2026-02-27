@@ -68,3 +68,12 @@ body{
     height: 2.5vw;
     width: auto;
 }
+
+.main{
+    flex-grow: 1;
+    box-sizing: border-box;
+    overflow-y: auto;
+    min-width:0;
+    min-height: 0;
+    font-family: Verdana;
+}
