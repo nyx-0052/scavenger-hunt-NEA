@@ -20,13 +20,10 @@ public class AdminRoutePreviewSubmissionServlet extends HttpServlet {
         String formattedRoute =  req.getParameter("formattedRoute");
         String routeName = req.getParameter("routeName");
 
-        boolean insertResult = db.addNewPresetRoute(routeName, formattedRoute);
+        int insertResult = db.addNewPresetRoute(routeName, formattedRoute);
         // for user feedback
-        if(insertResult){
-            session.setAttribute("AddRouteDatabaseFeedback", 1);
-        }else{
-            session.setAttribute("AddRouteDatabaseFeedback", 0);
-        }
+        session.setAttribute("AddRouteDatabaseFeedback", insertResult);
+
         RequestDispatcher rd = req.getRequestDispatcher("/AdminAddANewPresetServlet");
         rd.forward(req, res);
     }

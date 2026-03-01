@@ -105,18 +105,19 @@ public class DBHandler {
      * Inserts data into preset_routes table
      * @param routeName
      * @param routePath
+     * @return integer - 1 is a successful insert, 0 is a failure
      */
-    public boolean addNewPresetRoute(String routeName, String routePath) {
+    public int addNewPresetRoute(String routeName, String routePath) {
         String sql = "INSERT INTO preset_routes (name, route_path) VALUES (?,?)";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, routeName);
             stmt.setString(2, routePath);
             stmt.executeUpdate();
-            return true;
+            return 1;
         } catch (SQLException e) {
             System.out.println("Error in objects.DBHandler > addNewPresetRoute");
             e.printStackTrace();
-            return false;
+            return 0;
         }
     }
 
