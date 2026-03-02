@@ -88,7 +88,7 @@ public class DBHandler {
     /**
      * @return number of records in locations table (int)
      */
-    public int sizeOfLocations(){
+    public int sizeOfLocations() {
         String sql = "SELECT COUNT(location_id) FROM locations";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
@@ -101,6 +101,37 @@ public class DBHandler {
         }
     }
 
+    /**
+     * insert new location into locations table
+     * @param name
+     * @param xcoord
+     * @param ycoord
+     * @param descp
+     * @param school_link
+     * @param question_id
+     * @return feedback (success/failure)
+     */
+    public int addNewLocation(String name, int xcoord, int ycoord, String descp, String school_link, int question_id) {
+        String sql = "INSERT INTO locations(name, xcoord, ycoord, descp, school_link, question_id) VALUES (?,?,?,?,?,?)";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, name);
+            stmt.setInt(2, xcoord);
+            stmt.setInt(3, ycoord);
+            stmt.setString(4, descp);
+            stmt.setString(5, school_link);
+            stmt.setInt(6, question_id);
+            stmt.executeUpdate();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > addNewLocation");
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+
+    // PRESET_ROUTES TABLE
     /**
      * Inserts data into preset_routes table
      * @param routeName
@@ -121,12 +152,11 @@ public class DBHandler {
         }
     }
 
-    // PRESET_ROUTES TABLE
     /**
      * @param routeID
      * @return routePath as String
      */
-    public String getRoutePath(int routeID){
+    public String getRoutePath(int routeID) {
         String sql = "SELECT * FROM preset_routes WHERE route_id = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, routeID);
@@ -144,7 +174,7 @@ public class DBHandler {
      * @param routeName
      * @return routePath as String
      */
-    public String getRoutePath(String routeName){
+    public String getRoutePath(String routeName) {
         String sql = "SELECT * FROM preset_routes WHERE name =?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, routeName);
@@ -162,7 +192,7 @@ public class DBHandler {
      * @param routeID
      * @return routeName as String
      */
-    public String getRoutePresetName(int routeID){
+    public String getRoutePresetName(int routeID) {
         String sql = "SELECT name FROM preset_routes WHERE route_id =?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, routeID);
@@ -179,7 +209,7 @@ public class DBHandler {
     /**
      * @return length of (how many records there are) in the preset_routes table
      */
-    public int sizeOfRoutePresets(){
+    public int sizeOfRoutePresets() {
         String sql = "SELECT COUNT(route_id) FROM preset_routes";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
@@ -202,13 +232,13 @@ public class DBHandler {
      * @param reasonforvisit
      * @param reasonforvisitOther
      */
-    public void addUserInfo(int age, int gender, int currentschool, String currentschoolOther, int reasonforvisit, String reasonforvisitOther){
+    public void addUserInfo(int age, int gender, int currentschool, String currentschoolOther, int reasonforvisit, String reasonforvisitOther) {
         String sql;
-        if (currentschoolOther.isEmpty() && reasonforvisitOther.isEmpty()){
+        if (currentschoolOther.isEmpty() && reasonforvisitOther.isEmpty()) {
             sql = "INSERT INTO user_info (age, gender, reason_for_visit, current_schl) VALUES (?,?,?,?)";
             try (PreparedStatement stmt = con.prepareStatement(sql)) {
                 stmt.setInt(1, age);
-                stmt.setInt(2,gender);
+                stmt.setInt(2, gender);
                 stmt.setInt(3, reasonforvisit);
                 stmt.setInt(4, currentschool);
                 stmt.executeUpdate();
@@ -216,40 +246,40 @@ public class DBHandler {
                 System.out.println("Error in objects.DBHandler > addUserInfo");
                 e.printStackTrace();
             }
-        } else if (currentschoolOther.isEmpty()){
+        } else if (currentschoolOther.isEmpty()) {
             sql = "INSERT INTO user_info (age, gender, reason_for_visit, reason_for_visit_other, current_schl) VALUES (?,?,?,?,?)";
             try (PreparedStatement stmt = con.prepareStatement(sql)) {
                 stmt.setInt(1, age);
-                stmt.setInt(2,gender);
+                stmt.setInt(2, gender);
                 stmt.setInt(3, reasonforvisit);
-                stmt.setString(4,reasonforvisitOther);
+                stmt.setString(4, reasonforvisitOther);
                 stmt.setInt(5, currentschool);
                 stmt.executeUpdate();
             } catch (SQLException e) {
                 System.out.println("Error in objects.DBHandler > addUserInfo");
                 e.printStackTrace();
             }
-        } else if (reasonforvisitOther.isEmpty()){
+        } else if (reasonforvisitOther.isEmpty()) {
             sql = "INSERT INTO user_info (age, gender, reason_for_visit, current_schl, current_schl_other) VALUES (?,?,?,?,?)";
             try (PreparedStatement stmt = con.prepareStatement(sql)) {
                 stmt.setInt(1, age);
-                stmt.setInt(2,gender);
+                stmt.setInt(2, gender);
                 stmt.setInt(3, reasonforvisit);
-                stmt.setInt(4,currentschool);
+                stmt.setInt(4, currentschool);
                 stmt.setString(5, currentschoolOther);
                 stmt.executeUpdate();
             } catch (SQLException e) {
                 System.out.println("Error in objects.DBHandler > addUserInfo");
                 e.printStackTrace();
             }
-        } else{
+        } else {
             sql = "INSERT INTO user_info (age, gender, reason_for_visit, reason_for_visit_other, current_schl, current_schl_other) VALUES (?,?,?,?,?,?)";
             try (PreparedStatement stmt = con.prepareStatement(sql)) {
                 stmt.setInt(1, age);
-                stmt.setInt(2,gender);
+                stmt.setInt(2, gender);
                 stmt.setInt(3, reasonforvisit);
                 stmt.setString(4, reasonforvisitOther);
-                stmt.setInt(5,currentschool);
+                stmt.setInt(5, currentschool);
                 stmt.setString(6, currentschoolOther);
                 stmt.executeUpdate();
             } catch (SQLException e) {
@@ -262,7 +292,7 @@ public class DBHandler {
     /**
      * @return length of (how many records there are) in the user_info table
      */
-    public int sizeOfUserInfo(){
+    public int sizeOfUserInfo() {
         String sql = "SELECT COUNT(user_id) FROM user_info";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
@@ -277,10 +307,11 @@ public class DBHandler {
 
     /**
      * GENDER - Counts the number of answers which have the value (parameter)
+     *
      * @param value
      * @return number of answers
      */
-    public int countGender(int value){
+    public int countGender(int value) {
         String sql = "SELECT COUNT(gender) FROM user_info WHERE gender =?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, value);
@@ -296,10 +327,11 @@ public class DBHandler {
 
     /**
      * AGE - Counts the number of answers which have the value (parameter)
+     *
      * @param value
      * @return number of answers
      */
-    public int countAge(int value){
+    public int countAge(int value) {
         String sql = "SELECT COUNT(age) FROM user_info WHERE age =?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, value);
@@ -318,7 +350,7 @@ public class DBHandler {
      * @param value
      * @return number of answers
      */
-    public int countReasonForVisit(int value){
+    public int countReasonForVisit(int value) {
         String sql = "SELECT COUNT(reason_for_visit) FROM user_info WHERE reason_for_visit =?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, value);
@@ -336,7 +368,7 @@ public class DBHandler {
      * @param userID
      * @return other reasons for visiting as a String
      */
-    public String getReasonForVisitOther(int userID){
+    public String getReasonForVisitOther(int userID) {
         String sql = "SELECT * FROM user_info WHERE user_id = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, userID);
@@ -355,7 +387,7 @@ public class DBHandler {
      * @param value
      * @return number of answers
      */
-    public int countCurrentSchool(int value){
+    public int countCurrentSchool(int value) {
         String sql = "SELECT COUNT(current_schl) FROM user_info WHERE current_schl =?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, value);
@@ -373,7 +405,7 @@ public class DBHandler {
      * @param userID
      * @return other current schools as a String
      */
-    public String getCurrentSchoolOther(int userID){
+    public String getCurrentSchoolOther(int userID) {
         String sql = "SELECT * FROM user_info WHERE user_id = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setInt(1, userID);
@@ -384,6 +416,44 @@ public class DBHandler {
             System.out.println("Error in objects.DBHandler > getCurrentSchoolOther");
             e.printStackTrace();
             return null;
+        }
+    }
+
+    //QNA table
+    /**
+     * insert a new question into the qna table
+     *
+     * @param question
+     * @param option1
+     * @param option2
+     * @param option3
+     * @param correctOption
+     */
+    public void addNewQuestion(String question, String option1, String option2, String option3, int correctOption) {
+        String sql = "INSERT INTO qna (question, correct_ans, option_1, option_2, option_3) VALUES (?,?,?,?,?)";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, question);
+            stmt.setInt(2, correctOption);
+            stmt.setString(3, option1);
+            stmt.setString(4, option2);
+            stmt.setString(5, option3);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > addNewQuestion");
+            e.printStackTrace();
+        }
+    }
+
+    public int getLastQuestionID() {
+        String sql = "SELECT question_id FROM qna ORDER BY question_id DESC";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            return rs.getInt("question_id");
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > getLastQuestionID");
+            e.printStackTrace();
+            return -1;
         }
     }
 }

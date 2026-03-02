@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: elsa_lty
@@ -25,13 +26,13 @@
   <div class="sectionContainer">
     <h4>Management</h4>
     <a href="${pageContext.request.contextPath}/AdminAddANewPresetServlet"><div class="functionContainer"><img src="${pageContext.request.contextPath}/img/addRouteLocation.svg"><p>Add a new preset route</p></div></a>
-    <a href="${pageContext.request.contextPath}/adminInterface/adminAddLocation.jsp"><div class="functionContainer" id="selected"><img src="${pageContext.request.contextPath}/img/addRouteLocation.svg"><p>Add a new location</p></div></a>
+    <a><div class="functionContainer" id="selected"><img src="${pageContext.request.contextPath}/img/addRouteLocation.svg"><p>Add a new location</p></div></a>
     <a href="${pageContext.request.contextPath}/adminInterface/adminEditLocation.jsp"><div class="functionContainer"><img src="${pageContext.request.contextPath}/img/editALocation.svg"><p>Edit a location</p></div></a>
   </div>
 
 </div>
 <div class="main">
-    <form onsubmit="return validation()" action="">
+    <form onsubmit="return validation()" action="${pageContext.request.contextPath}/AdminAddALocationSubmissionServlet" method="get">
       <div>
         <span>
           <label for="locationName">Name:</label>
@@ -72,15 +73,15 @@
 
         <span>
           <label for="option1Value">Option 1:</label>
-          <input type="text" name="option1Value" id="option1Value" required><br>
+          <input type="text" name="option1" id="option1Value" required><br>
         </span>
         <span>
           <label for="option2Value">Option 2:</label>
-          <input type="text" name="option2Value" id="option2Value" required><br>
+          <input type="text" name="option2" id="option2Value" required><br>
         </span>
         <span>
           <label for="option3Value">Option 3:</label>
-          <input type="text" name="option3Value" id="option3Value" required><br>
+          <input type="text" name="option3" id="option3Value" required><br>
         </span>
 
         <span>
@@ -108,6 +109,12 @@
 </div>
 
 <script>
+  if ("${AddLocationDatabaseFeedback}"=="1"){
+    window.alert("Your location has been successfully added.");
+  } else if ("${AddLocationDatabaseFeedback}"=="0"){
+    window.alert("Your location has not been successfully added. Please try again later.")
+  }
+
   // COORDINATES:
   let schoolMap = document.getElementById("schoolMap");
 
@@ -121,24 +128,35 @@
     document.getElementById("ycoordValue").innerText = coordArray[1]*2;
 
     // for sending to server (setting value for hidden input values)
-    document.getElementById("xcoordValueServer").innerText = coordArray[0]*2;
-    document.getElementById("ycoordValueServer").innerText = coordArray[1]*2;
+    document.getElementById("xcoordValueServer").value = coordArray[0]*2;
+    document.getElementById("ycoordValueServer").value = coordArray[1]*2;
   });
 
   // VALIDATION:
   function validation(){
-    if(document.getElementById("xcoordValueServer").innerText==="" || document.getElementById("ycoordValueServer").innerText===""){
+    if(document.getElementById("xcoordValueServer").value==="" || document.getElementById("ycoordValueServer").value===""){
       window.alert("Please click on your location on the map to select the coordinates.")
       return false;
     } else {
-      let url = document.getElementById("schoolLink").value;
-      try {
-        let givenURL = new URL (url);
-      } catch (error) {
-        window.alert("The link provided is not valid. PLease check before resubmitting.")
+      let userInputLocationName = document.getElementById("locationName").value.toUpperCase();
+      var check = true;
+      <c:forEach var="item" items="${listOfLocationsNames}">
+      if("${item}"==userInputLocationName){
+        window.alert("A location with this name already exists. Please check before resubmitting.")
+        check=false;
         return false;
       }
-      return false;
+      </c:forEach>
+    }
+      if(check){
+        let url = document.getElementById("schoolLink").value;
+        try {
+          let givenURL = new URL (url);
+        } catch (error) {
+          window.alert("The link provided is not valid. PLease check before resubmitting.")
+          return false;
+        }
+        return true;
     }
   }
 </script>
