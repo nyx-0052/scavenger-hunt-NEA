@@ -102,7 +102,7 @@ public class DBHandler {
     }
 
     /**
-     * insert new location into locations table
+     * insert a new location into the locations table
      * @param name
      * @param xcoord
      * @param ycoord

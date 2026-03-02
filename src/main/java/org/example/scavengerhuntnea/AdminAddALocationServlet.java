@@ -17,7 +17,7 @@ public class AdminAddALocationServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         DBHandler db = new DBHandler();
-        // for validation function - validating route name
+        // for validation function - validating location name
         ArrayList<String> listOfLocationsNames = new ArrayList<>();
         int numberOfLocations = db.sizeOfLocations();
         for (int i = 1; i < numberOfLocations+1; i++) {

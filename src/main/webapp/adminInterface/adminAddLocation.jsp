@@ -125,10 +125,9 @@
   document.getElementById("schoolMap").addEventListener('click', function (event) {
     // https://stackoverflow.com/a/288731/1497139
     var bounds = this.getBoundingClientRect(); // size of school map image
-    var viewportX=bounds.left; // distance from viewport to the left edge of element
-    var viewportY=bounds.top;
-    var labelX = event.pageX - viewportX; // WHAT THE LABEL SHOWS -> distance of whole page to cursor
-    var labelY = event.pageY - viewportY;
+    // WHAT THE LABEL SHOWS -> distance of whole page to cursor - page to the edge of image
+    var labelX = event.pageX - bounds.left;
+    var labelY = event.pageY - bounds.top;
 
     // image dimensions - for scaling
     var cw=this.clientWidth // window image height
@@ -136,8 +135,8 @@
     var iw=this.naturalWidth // original image height
     var ih=this.naturalHeight
 
-    // scaling position
-    var databaseX=labelX/cw*iw; // WHAT THE DB STORES -> cursor position/scaled image height * original image height (scaled)
+    // WHAT THE DB STORES -> cursor position/scaled image height * original image height (scaled)
+    var databaseX=labelX/cw*iw;
     var databaseY=labelY/ch*ih;
 
     // for displaying in labels
@@ -174,7 +173,7 @@
         try {
           let givenURL = new URL (url);
         } catch (error) {
-          window.alert("The link provided is not valid. PLease check before resubmitting.")
+          window.alert("The link provided is not valid. Please check before resubmitting.")
           return false;
         }
         return true;
