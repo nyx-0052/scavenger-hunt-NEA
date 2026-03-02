@@ -101,14 +101,16 @@
 
   <div>
     <h3>Click on the location below to get the coordinates:</h3>
-    <a href="#">
-      <img src="${pageContext.request.contextPath}/img/schoolMap.jpg" id="schoolMap" ismap>
-    </a>
+    <div id="imageWrapper">
+      <img src="${pageContext.request.contextPath}/img/locationMarker.svg" id="locationMarker">
+      <img src="${pageContext.request.contextPath}/img/schoolMap.jpg" id="schoolMap">
+    </div>
   </div>
 
 </div>
 
 <script>
+  // USER FEEDBACK:
   if ("${AddLocationDatabaseFeedback}"=="1"){
     window.alert("Your location has been successfully added.");
   } else if ("${AddLocationDatabaseFeedback}"=="0"){
@@ -116,20 +118,39 @@
   }
 
   // COORDINATES:
-  let schoolMap = document.getElementById("schoolMap");
+  // Source - https://stackoverflow.com/a/58568016
+  // Posted by Wolfgang Fahl, modified by community. See post 'Timeline' for change history
+  // Retrieved 2026-03-02, License - CC BY-SA 4.0
+  // https://stackoverflow.com/questions/34867066/javascript-mouse-click-coordinates-for-image
+  document.getElementById("schoolMap").addEventListener('click', function (event) {
+    // https://stackoverflow.com/a/288731/1497139
+    var bounds = this.getBoundingClientRect(); // size of school map image
+    var viewportX=bounds.left; // distance from viewport to the left edge of element
+    var viewportY=bounds.top;
+    var labelX = event.pageX - viewportX; // WHAT THE LABEL SHOWS -> distance of whole page to cursor
+    var labelY = event.pageY - viewportY;
 
-  schoolMap.addEventListener("click", function(){
-    // for getting coordinates from URL
-    const params = window.location.hash;
-    console.log(params)
-    const coordArray = params.match(/\d+/g);
+    // image dimensions - for scaling
+    var cw=this.clientWidth // window image height
+    var ch=this.clientHeight
+    var iw=this.naturalWidth // original image height
+    var ih=this.naturalHeight
+
+    // scaling position
+    var databaseX=labelX/cw*iw; // WHAT THE DB STORES -> cursor position/scaled image height * original image height (scaled)
+    var databaseY=labelY/ch*ih;
+
     // for displaying in labels
-    document.getElementById("xcoordValue").innerText = coordArray[0]*2;
-    document.getElementById("ycoordValue").innerText = coordArray[1]*2;
-
+    document.getElementById("xcoordValue").innerText = Math.round(labelX);
+    document.getElementById("ycoordValue").innerText = Math.round(labelY);
     // for sending to server (setting value for hidden input values)
-    document.getElementById("xcoordValueServer").value = coordArray[0]*2;
-    document.getElementById("ycoordValueServer").value = coordArray[1]*2;
+    document.getElementById("xcoordValueServer").value = Math.round(databaseX);
+    document.getElementById("ycoordValueServer").value = Math.round(databaseY);
+
+    // for positioning a location marker in the map
+    document.getElementById("locationMarker").style.bottom = Math.round(cw-labelY)+"px";
+    var scalePosition = 50*cw/iw;
+    document.getElementById("locationMarker").style.left = Math.round(labelX-scalePosition)+"px";
   });
 
   // VALIDATION:

@@ -6,11 +6,6 @@
     align-items: center;
 }
 
-.main img{
-    height:calc(1399px/2);
-    width: auto;
-}
-
 .main form{
     border: none;
     border-radius: 8px;
@@ -72,4 +67,23 @@ input[type="submit"]:hover{
 .main h3{
     color: #F0F0EA;
     font-family: Verdana;
+}
+
+#imageWrapper{
+    position: relative;
+}
+
+#imageWrapper a{
+    display: block;
+}
+#schoolMap{
+    display: block;
+    height:calc(1399px/2);
+    width: calc(1391px/2);
+}
+
+#locationMarker{
+    position: absolute;
+    height: 50px;
+    width: 50px;
 }
