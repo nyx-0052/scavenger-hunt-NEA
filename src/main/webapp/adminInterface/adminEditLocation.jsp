@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: elsa_lty
@@ -10,6 +11,7 @@
 <head>
   <title>Fettes Scavenger Hunt - Edit a location</title>
   <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/adminInterface/adminDashboard.css">
+  <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/adminInterface/adminEditLocation.css">
 </head>
 <body>
 <div class="dashboardNavBar">
@@ -25,9 +27,17 @@
     <h4>Management</h4>
     <a href="${pageContext.request.contextPath}/AdminAddANewPresetServlet"><div class="functionContainer"><img src="${pageContext.request.contextPath}/img/addRouteLocation.svg"><p>Add a new preset route</p></div></a>
     <a href="${pageContext.request.contextPath}/AdminAddALocationServlet"><div class="functionContainer"><img src="${pageContext.request.contextPath}/img/addRouteLocation.svg"><p>Add a new location</p></div></a>
-    <a href="${pageContext.request.contextPath}/adminInterface/adminEditLocation.jsp"><div class="functionContainer" id="selected"><img src="${pageContext.request.contextPath}/img/editALocation.svg"><p>Edit a location</p></div></a>
+    <a><div class="functionContainer" id="selected"><img src="${pageContext.request.contextPath}/img/editALocation.svg"><p>Edit a location</p></div></a>
   </div>
 
+</div>
+<div class="main">
+  <h2>Select the location you would like to edit:</h2>
+  <div class="listofroutes">
+    <c:forEach var="item" items="${listofLocations}">
+      <a href="AdminEditingLocationServlet?id=${item.getLocationID()}"><div class="locationContainer">${item.getLocationID()}. ${item.getName()}</div></a>
+    </c:forEach>
+  </div>
 </div>
 
 </body>

@@ -1,0 +1,16 @@
+.main{
+    padding: 30px 80px;
+    font-family: Verdana;
+    color: #F0F0EA;
+}
+
+.locationContainer{
+    margin-top: 8px;
+    padding: 14px 40px;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+    color: #44290C;
+    background-color: #F0F0EA;
+    font-size: 20px;
+}
