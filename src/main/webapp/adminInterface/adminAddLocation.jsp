@@ -56,7 +56,7 @@
 
         <span>
           <label for="descp">Description:</label>
-          <input type="text" name="descp" id="descp" required><br>
+          <textarea id="descp" name="descp" rows="4" cols="50" required></textarea><br>
         </span>
 
         <span>
@@ -159,16 +159,13 @@
       return false;
     } else {
       let userInputLocationName = document.getElementById("locationName").value.toUpperCase();
-      var check = true;
       <c:forEach var="item" items="${listOfLocationsNames}">
       if("${item}"==userInputLocationName){
         window.alert("A location with this name already exists. Please check before resubmitting.")
-        check=false;
         return false;
       }
       </c:forEach>
     }
-      if(check){
         let url = document.getElementById("schoolLink").value;
         try {
           let givenURL = new URL (url);
@@ -177,7 +174,6 @@
           return false;
         }
         return true;
-    }
   }
 </script>
 

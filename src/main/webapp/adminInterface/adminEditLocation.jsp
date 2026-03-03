@@ -40,5 +40,14 @@
   </div>
 </div>
 
+<script>
+  // user feedback
+  if ("${EditLocationDatabaseFeedback}"=="1"){
+    window.alert("Your changes have been successfully saved.");
+  } else if ("${EditLocationDatabaseFeedback}"=="0"){
+    window.alert("Your changes has not been successfully added. Please try again later.")
+  }
+</script>
+
 </body>
 </html>

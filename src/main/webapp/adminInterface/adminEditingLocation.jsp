@@ -38,8 +38,9 @@
   </div>
 
   <div class="editing">
-  <form onsubmit="return validation()" action="${pageContext.request.contextPath}/AdminAddALocationSubmissionServlet" method="get">
+  <form onsubmit="return validation()" action="${pageContext.request.contextPath}/AdminEditALocationSubmissionServlet" method="get">
     <div>
+        <input type="hidden" value="${chosenLocation.getLocationID()}" name="locationID">
         <span>
           <label for="locationName">Name:</label>
           <input type="text" name="locationName" id="locationName" required> <br>
@@ -61,8 +62,8 @@
         </span>
 
       <span>
-          <label for="descp">Description:</label>
-          <input type="text" name="descp" id="descp" required><br>
+          <label for="descp">Description:</label><br>
+          <textarea id="descp" name="descp" rows="4" cols="50" required></textarea><br>
         </span>
 
       <span>
@@ -116,6 +117,39 @@
 </div>
 
 <script>
+  // pre-filling user input into textboxes, radio buttons and location marker
+  document.getElementById("locationName").value = "${chosenLocation.getName()}";
+  document.getElementById("descp").value = "${chosenLocation.getDescp()}";
+  document.getElementById("schoolLink").value = "${chosenLocation.getSchoolLink()}";
+  document.getElementById("question").value = "${chosenLocation.getQuestion()}"
+  document.getElementById("option1Value").value="${chosenLocation.getOption1()}"
+  document.getElementById("option2Value").value="${chosenLocation.getOption2()}"
+  document.getElementById("option3Value").value="${chosenLocation.getOption3()}"
+  document.getElementById("${chosenLocation.getCorrectOption()}").checked = true;
+
+  // initial position of a location marker in the map
+  const schoolMap = document.getElementById("schoolMap");
+  // image dimensions - for scaling
+  var cw=schoolMap.clientWidth // window image height
+  var ch=schoolMap.clientHeight
+  var iw=schoolMap.naturalWidth // original image height
+  var ih=schoolMap.naturalHeight
+
+  // for displaying in labels
+  var labelX = ${chosenLocation.getXcoord()}/iw*cw;
+  var labelY = ${chosenLocation.getYcoord()}/ih*ch;
+  document.getElementById("xcoordValue").innerText = Math.round(labelX);
+  document.getElementById("ycoordValue").innerText = Math.round(labelY);
+
+  // for sending to server (setting value for hidden input values)
+  document.getElementById("xcoordValueServer").value = ${chosenLocation.getXcoord()};
+  document.getElementById("ycoordValueServer").value = ${chosenLocation.getYcoord()};
+
+  // initial position location marker
+  document.getElementById("locationMarker").style.bottom = Math.round(cw-labelY)+"px";
+  var scalePosition = 50*cw/iw;
+  document.getElementById("locationMarker").style.left = Math.round(labelX-scalePosition)+"px";
+
   // COORDINATES:
   // Source - https://stackoverflow.com/a/58568016
   // Posted by Wolfgang Fahl, modified by community. See post 'Timeline' for change history
@@ -153,21 +187,30 @@
 
   // VALIDATION:
   function validation(){
-    if(document.getElementById("xcoordValueServer").value==="" || document.getElementById("ycoordValueServer").value===""){
-      window.alert("Please click on your location on the map to select the coordinates.")
-      return false;
-    } else {
+      if(
+      document.getElementById("locationName").value == "${chosenLocation.getName()}"&&
+      document.getElementById("descp").value == "${chosenLocation.getDescp()}" &&
+      document.getElementById("schoolLink").value == "${chosenLocation.getSchoolLink()}"&&
+      document.getElementById("question").value == "${chosenLocation.getQuestion()}" &&
+      document.getElementById("option1Value").value=="${chosenLocation.getOption1()}" &&
+      document.getElementById("option2Value").value=="${chosenLocation.getOption2()}"&&
+      document.getElementById("option3Value").value=="${chosenLocation.getOption3()}"&&
+      document.querySelector('input[name="correctOption"]:checked').value== ${chosenLocation.getCorrectOption()}&&
+      document.getElementById("xcoordValueServer").value == ${chosenLocation.getXcoord()} &&
+      document.getElementById("ycoordValueServer").value == ${chosenLocation.getYcoord()}
+      ){
+          window.alert("No changes have been made.")
+          return false;
+      }
+
       let userInputLocationName = document.getElementById("locationName").value.toUpperCase();
-      var check = true;
       <c:forEach var="item" items="${listOfLocationsNames}">
       if("${item}"==userInputLocationName){
         window.alert("A location with this name already exists. Please check before resubmitting.")
-        check=false;
         return false;
       }
       </c:forEach>
-    }
-    if(check){
+
       let url = document.getElementById("schoolLink").value;
       try {
         let givenURL = new URL (url);
@@ -176,7 +219,6 @@
         return false;
       }
       return true;
-    }
   }
 </script>
 </body>

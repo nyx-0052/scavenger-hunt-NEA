@@ -129,6 +129,33 @@ public class DBHandler {
         }
     }
 
+    /**
+     * updating a location
+     * @param name
+     * @param xcoord
+     * @param ycoord
+     * @param descp
+     * @param school_link
+     * @param location_id
+     * @return feedback (success/failure)
+     */
+    public int updateLocation(String name, int xcoord, int ycoord, String descp, String school_link, int location_id) {
+        String sql = "UPDATE locations SET name = ?, xcoord= ?, ycoord = ?, descp = ?, school_link = ? WHERE location_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, name);
+            stmt.setInt(2, xcoord);
+            stmt.setInt(3, ycoord);
+            stmt.setString(4, descp);
+            stmt.setString(5, school_link);
+            stmt.setInt(6, location_id);
+            stmt.executeUpdate();
+            return 1;
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > updateLocation");
+            e.printStackTrace();
+            return 0;
+        }
+    }
 
 
     // PRESET_ROUTES TABLE
@@ -422,7 +449,6 @@ public class DBHandler {
     //QNA table
     /**
      * insert a new question into the qna table
-     *
      * @param question
      * @param option1
      * @param option2
@@ -444,6 +470,10 @@ public class DBHandler {
         }
     }
 
+    /**
+     *
+     * @return the question ID (PK) of the last record in the table
+     */
     public int getLastQuestionID() {
         String sql = "SELECT question_id FROM qna ORDER BY question_id DESC";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -454,6 +484,30 @@ public class DBHandler {
             System.out.println("Error in objects.DBHandler > getLastQuestionID");
             e.printStackTrace();
             return -1;
+        }
+    }
+
+    /**
+     * updating a question
+     * @param question
+     * @param option1
+     * @param option2
+     * @param option3
+     * @param correctOption
+     */
+    public void updateQuestion(String question, String option1, String option2, String option3, int correctOption, int question_id){
+        String sql = "UPDATE qna SET question = ?, correct_ans= ?, option_1 = ?, option_2 = ?, option_3 = ?  WHERE question_id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, question);
+            stmt.setInt(2, correctOption);
+            stmt.setString(3, option1);
+            stmt.setString(4, option2);
+            stmt.setString(5, option3);
+            stmt.setInt(6, question_id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error in objects.DBHandler > updateQuestion");
+            e.printStackTrace();
         }
     }
 }

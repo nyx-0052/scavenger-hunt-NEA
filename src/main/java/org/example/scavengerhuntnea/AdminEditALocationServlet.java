@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import objects.DBHandler;
 import objects.Location;
 
@@ -26,6 +27,15 @@ public class AdminEditALocationServlet extends HttpServlet {
             listofLocations.add(location);
         }
         req.setAttribute("listofLocations", listofLocations);
+
+        // for user feedback after submission to database
+        HttpSession session = req.getSession();
+        Object databaseFeedback = session.getAttribute("EditLocationDatabaseFeedback");
+        if (databaseFeedback != null){
+            req.setAttribute("EditLocationDatabaseFeedback", databaseFeedback);
+        }
+        // clearing it so the message does not appear repeatedly when the page is launched
+        session.setAttribute("EditLocationDatabaseFeedback", "");
 
         RequestDispatcher rd = req.getRequestDispatcher("/adminInterface/adminEditLocation.jsp");
         rd.forward(req, res);
