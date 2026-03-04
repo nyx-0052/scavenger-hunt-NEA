@@ -16,15 +16,34 @@
     color: #F0F0EA;
 }
 
-input[type="image"] {
+#backButton{
     height: 60px;
     width: auto;
+    align-self: center;
+}
+
+#qrCodeButton{
+    height: 80px;
+    width: auto;
+}
+
+#qrCodeButtonWrapper{
+    background-color: #44290C;
+    border-radius: 8px;
+    border: none;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+#qrCodeButtonWrapper:hover {
+    background-color: #D3A1AB;
 }
 
 h2{
     position: relative;
     margin: auto;
-    left: -30px;
     color: #F0F0EA;
 }
 

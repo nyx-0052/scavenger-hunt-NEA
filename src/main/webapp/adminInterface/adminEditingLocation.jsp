@@ -33,8 +33,9 @@
 </div>
 <div class="main">
   <div class="navbar">
-    <input type="image" src="${pageContext.request.contextPath}/img/backbuttonAdmin.svg" onclick="history.back()"/>
+    <input type="image" src="${pageContext.request.contextPath}/img/backbuttonAdmin.svg" onclick="history.back()" id="backButton"/>
     <h2>Editing ${chosenLocation.getLocationID()}. ${chosenLocation.getName()}:</h2>
+    <a href="${pageContext.request.contextPath}/adminInterface/adminQRCode.jsp?id=${chosenLocation.getLocationID()}&name=${chosenLocation.getName()}"><div id="qrCodeButtonWrapper"><img src="${pageContext.request.contextPath}/img/QRCode.svg" id="qrCodeButton"><h4>Get QR Code</h4></div></a>
   </div>
 
   <div class="editing">
@@ -117,7 +118,7 @@
 </div>
 
 <script>
-  // pre-filling user input into textboxes, radio buttons and location marker
+  // 1. pre-filling user input into textboxes, radio buttons and location marker
   document.getElementById("locationName").value = "${chosenLocation.getName()}";
   document.getElementById("descp").value = "${chosenLocation.getDescp()}";
   document.getElementById("schoolLink").value = "${chosenLocation.getSchoolLink()}";
@@ -127,20 +128,18 @@
   document.getElementById("option3Value").value="${chosenLocation.getOption3()}"
   document.getElementById("${chosenLocation.getCorrectOption()}").checked = true;
 
-  // initial position of a location marker in the map
+  // for coordinates and location marker
   const schoolMap = document.getElementById("schoolMap");
   // image dimensions - for scaling
   var cw=schoolMap.clientWidth // window image height
   var ch=schoolMap.clientHeight
   var iw=schoolMap.naturalWidth // original image height
   var ih=schoolMap.naturalHeight
-
   // for displaying in labels
   var labelX = ${chosenLocation.getXcoord()}/iw*cw;
   var labelY = ${chosenLocation.getYcoord()}/ih*ch;
   document.getElementById("xcoordValue").innerText = Math.round(labelX);
   document.getElementById("ycoordValue").innerText = Math.round(labelY);
-
   // for sending to server (setting value for hidden input values)
   document.getElementById("xcoordValueServer").value = ${chosenLocation.getXcoord()};
   document.getElementById("ycoordValueServer").value = ${chosenLocation.getYcoord()};
@@ -150,7 +149,7 @@
   var scalePosition = 50*cw/iw;
   document.getElementById("locationMarker").style.left = Math.round(labelX-scalePosition)+"px";
 
-  // COORDINATES:
+  // 2. picking and updating coordinates (and labels) using map:
   // Source - https://stackoverflow.com/a/58568016
   // Posted by Wolfgang Fahl, modified by community. See post 'Timeline' for change history
   // Retrieved 2026-03-02, License - CC BY-SA 4.0
@@ -161,7 +160,6 @@
     // WHAT THE LABEL SHOWS -> distance of whole page to cursor - page to the edge of image
     var labelX = event.pageX - bounds.left;
     var labelY = event.pageY - bounds.top;
-
     // image dimensions - for scaling
     var cw=this.clientWidth // window image height
     var ch=this.clientHeight
@@ -178,15 +176,15 @@
     // for sending to server (setting value for hidden input values)
     document.getElementById("xcoordValueServer").value = Math.round(databaseX);
     document.getElementById("ycoordValueServer").value = Math.round(databaseY);
-
     // for positioning a location marker in the map
     document.getElementById("locationMarker").style.bottom = Math.round(cw-labelY)+"px";
     var scalePosition = 50*cw/iw;
     document.getElementById("locationMarker").style.left = Math.round(labelX-scalePosition)+"px";
   });
 
-  // VALIDATION:
+  // 3. validation:
   function validation(){
+      // 3.1 if any changes have been made
       if(
       document.getElementById("locationName").value == "${chosenLocation.getName()}"&&
       document.getElementById("descp").value == "${chosenLocation.getDescp()}" &&
@@ -202,15 +200,7 @@
           window.alert("No changes have been made.")
           return false;
       }
-
-      let userInputLocationName = document.getElementById("locationName").value.toUpperCase();
-      <c:forEach var="item" items="${listOfLocationsNames}">
-      if("${item}"==userInputLocationName){
-        window.alert("A location with this name already exists. Please check before resubmitting.")
-        return false;
-      }
-      </c:forEach>
-
+      // 3.2 url is valid
       let url = document.getElementById("schoolLink").value;
       try {
         let givenURL = new URL (url);
